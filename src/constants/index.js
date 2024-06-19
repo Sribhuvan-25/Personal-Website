@@ -44,7 +44,7 @@ export const RESEARCH = [
     description: `Engineered end-to-end endoscopic image classification system using DenseNet and Grad-CAM++, achieving 90% accuracy. Designed guided patch extraction and adaptive thresholding for precise polyp detection, enhancing model performance. Created a meta-classifier ensemble with RandomForest, GradientBoosting, and LogisticRegression, boosting recall to 91%.`,
     technologies: [
       "DenseNet",
-      "Grad-CAM++",
+      "GradCAM++",
       "RandomForest",
       "GradientBoosting",
       "LogisticRegression",
