@@ -1,5 +1,6 @@
 import aboutImage from "../assets/about.png"
 import { motion } from "framer-motion"
+import { ABOUT_TEXT } from "../constants"
 
 const About = () => {
   return (
@@ -24,9 +25,8 @@ const About = () => {
             transition={{duration: 0.5}}
             className="w-full lg:w-1/2">
                     <div className="flex justify-center lg:justify-start">
-                        <p className="my-2 max-w-xl py-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            Obcaecati minima modi sapiente dolore quibusdam aliquid reiciendis suscipit, quo earum 
-                            numquam quod, explicabo sunt laudantium natus eligendi omnis illo. Perferendis, earum!
+                        <p className="my-2 max-w-xl py-6">
+                            {ABOUT_TEXT}
                         </p>
                     </div>
             </motion.div>

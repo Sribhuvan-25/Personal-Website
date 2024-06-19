@@ -4,6 +4,7 @@ import { SiMongodb } from "react-icons/si"
 import { FaNodeJs } from "react-icons/fa"
 import { inView, motion } from "framer-motion"
 
+
 const iconAnimaiton = (duration) => ({
     initial: { y: -10 },
     animate: {

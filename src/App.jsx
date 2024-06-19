@@ -4,6 +4,7 @@ import Hero from './components/Me'
 import About from './components/About'
 import TechStack from './components/TechStack'
 import Experience from './components/Experience'
+import Research from './components/Research'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
 
@@ -22,6 +23,7 @@ const App = () => {
         <About />
         <TechStack />
         <Experience />
+        <Research />
         <Projects />
         <Contact />
       </div>

@@ -1,5 +1,6 @@
 import profile from "../assets/profile.jpg";
 import { motion } from "framer-motion";
+import { INTRO_CONTENT} from "../constants";
 
 const container = (delay) => ({
   hidden: {x: -100, opacity: 0},
@@ -21,7 +22,7 @@ const Me = () => {
             variants={container(0)}
             initial="hidden"
             animate="visible"
-            className="pb-16 text-6xl font-thin tracking-tight lg:mt-16 lg:text-8xl">
+            className="pb-16 text-6xl font-thin tracking-tight lg:mt-16 lg:text-6xl">
               Sribhuvan Yellu
             </motion.h1>
             <motion.span 
@@ -37,8 +38,7 @@ const Me = () => {
             initial="hidden"
             animate="visible"
             className="my-2 max-w-xl py-6 font-light tracking-tighter">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas facilis eum similique ad dolore. 
-              Nam, distinctio quia obcaecati explicabo perspiciatis accusamus, omnis suscipit dolorem ut atque libero nemo earum fugiat.
+              {INTRO_CONTENT}
             </motion.p>
           </div>
         </div>
