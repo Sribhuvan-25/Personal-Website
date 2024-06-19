@@ -9,7 +9,7 @@ const Research = () => {
         initial={{opacity: 0, y: -100}}
         transition={{duration: 1.5}}  
         className="my-20 text-center text-4xl">
-            Research
+            Research Experience
         </motion.h2>
       <div>
         {RESEARCH.map((exp, idx) => (
