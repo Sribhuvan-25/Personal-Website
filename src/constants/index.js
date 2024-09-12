@@ -62,14 +62,14 @@ export const RESEARCH = [
 export const PROJECTS = [
   {
     title: "Drive-Thru Vision [Hackathon Project]",
-    image: tumor,
+    image: driveThru,
     description:
       "Executed automated licence plate recognition within drive-thru systems, that enables to provide personalized menu to customers. Implemented a ML algorithm & Computer vision model using OpenCV and used Tesseract OCR, achieving an accuracy of 80%. Integrated this model to an existing product at NCR with a flask backend and worked with MongoDB for data management.",
     technologies: ["OpenCV", "Tesseract OCR", "Flask", "MongoDB"],
   },
   {
     title: "Tumor Detection",
-    image: driveThru,
+    image: tumor,
     description:
       "Proposed and performed tumor detection using advanced image classification techniques specifically tailored for brain MRIs. Prepared 3 distinct CNN architectures and 2 traditional ML models processed on over 500+ images of 4 different classes. Achieved an accuracy of 84%, precision of 81% and reduction of processing time by 20% leveraging the MobileResNet model.",
     technologies: ["CNN", "MobileResNet", "Image Classification", "MRI"],
