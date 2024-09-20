@@ -22,6 +22,14 @@ const Research = () => {
                 transition={{duration: 1.5}} 
                 className="w-full lg:w-1/4">
                     <p className="mb-2 text-sm text-neutral-400">{exp.year}</p>
+                    <img 
+                    src={exp.image} 
+                    width={200} 
+                    height={200}
+                    alt={exp.company}
+                    className="mb-6 rounded object-cover"
+                    style={{ width: '120px', height: '120px' }}
+                    />
                 </motion.div>
                 <motion.div 
                 whileInView={{opacity: 1, x: 0}}
@@ -31,7 +39,12 @@ const Research = () => {
                     <h6 className="mb-2 font-semibold">
                         {exp.role} - <span className="text-sm text-purple-100">{exp.company}</span>
                     </h6>
-                    <p className="mb-4 text-neutral-400">{exp.description}</p>
+                    {/* Render description as bullet points */}
+                    <ul className="mb-4 text-neutral-400 list-disc list-inside">
+                      {exp.description.map((point, index) => (
+                        <li key={index}>{point}</li>
+                      ))}
+                    </ul>
                     {exp.technologies.map((technology, idx) => (
                         <span key={idx} className="mr-2 mt-4 rounded bg-neutral-900 
                         px-2 py-1 text-sm font-medium text-pink-500">
@@ -46,4 +59,4 @@ const Research = () => {
   )
 }
 
-export default Research
+export default Research;
