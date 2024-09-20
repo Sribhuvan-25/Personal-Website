@@ -53,7 +53,7 @@ export const EXPERIENCES = [
       "Streamlined data retrieval and improved consumer request processing by moving from client-side to server-side rendering.",
       "Integrated customer-centric UI components with 3 engineers, seamlessly connecting front-end and back-end infrastructure.",
     ],
-    technologies: ["iOS", "RESTful API", "Mercury", "UI Components"],
+    technologies: ["iOS Development", "Swift", "RESTful API"],
   },
 ];
 
@@ -69,11 +69,11 @@ export const RESEARCH = [
       "Created a meta-classifier ensemble with RandomForest, GradientBoosting, and LogisticRegression, boosting recall to 91%.",
     ],
     technologies: [
-      "DenseNet",
+      "Deep Learning",
       "GradCAM++",
-      "RandomForest",
-      "GradientBoosting",
-      "LogisticRegression",
+      "Tensroflow",
+      "Pytorch",
+      "Image Processing",
     ],
   },
   {
@@ -86,7 +86,7 @@ export const RESEARCH = [
       "Processed model on 1000+ German folk music pieces, leveraging TensorFlow and the music21 library.",
       "Executed an optimization concept involving 'placing matrix,' resulting in an 86% reduction in training time.",
     ],
-    technologies: ["CNN", "LSTM", "TensorFlow", "music21"],
+    technologies: ["Deep Learning", "Music Theory", "TensorFlow", "music21"],
   },
 ];
 
@@ -109,7 +109,7 @@ export const PROJECTS = [
       "Prepared 3 distinct CNN architectures and 2 traditional ML models, processing 500+ images across 4 different classes.",
       "Achieved 84% accuracy, 81% precision, and reduced processing time by 20% with MobileResNet.",
     ],
-    technologies: ["CNN", "MobileResNet", "Image Classification", "MRI"],
+    technologies: ["Deep Learning", "Tensorflow", "Image Classification"],
   },
 ];
 

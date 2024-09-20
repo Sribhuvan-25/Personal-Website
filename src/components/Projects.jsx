@@ -31,7 +31,12 @@ const Projects = () => {
                 transition={{duration: 1}} 
                 className="w-full max-w-xl lg:w-3/4">
                     <h6 className="mb-2 font-semibold">{project.title}</h6>
-                    <p className="mb-4 text-neutral-400">{project.description}</p>
+                    {/* Render description as bullet points */}
+                    <ul className="mb-4 text-neutral-400 list-disc list-inside">
+                      {project.description.map((point, index) => (
+                        <li key={index}>{point}</li>
+                      ))}
+                    </ul>
                     {project.technologies.map((technology, idx) => (
                         <span key={idx} className="mr-2 mt-4 rounded bg-neutral-900 
                         px-2 py-1 text-sm font-medium text-pink-500">
@@ -46,4 +51,4 @@ const Projects = () => {
   )
 }
 
-export default Projects
+export default Projects;
