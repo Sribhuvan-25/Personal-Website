@@ -93,7 +93,7 @@ export const RESEARCH = [
 export const PROJECTS = [
   {
     title: "Drive-Thru Vision [Hackathon Project]",
-    image: tumor,
+    image: driveThru,
     description: [
       "Executed automated license plate recognition within drive-thru systems, enabling personalized menus for customers.",
       "Implemented a machine learning algorithm and computer vision model using OpenCV and Tesseract OCR, achieving 80% accuracy.",
@@ -103,7 +103,7 @@ export const PROJECTS = [
   },
   {
     title: "Tumor Detection",
-    image: driveThru,
+    image: tumor,
     description: [
       "Proposed and performed tumor detection using advanced image classification techniques tailored for brain MRIs.",
       "Prepared 3 distinct CNN architectures and 2 traditional ML models, processing 500+ images across 4 different classes.",
