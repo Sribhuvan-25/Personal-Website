@@ -1,5 +1,8 @@
 import logo from "../assets/nameLogo.png"
-import { FaLinkedin, FaGithub } from 'react-icons/fa';
+import { FaLinkedin, FaGithub,  } from 'react-icons/fa';
+import resume from "../assets/resume.pdf";
+import { IoDocumentTextOutline } from "react-icons/io5";
+
 
 const Navbar = () => {
     return (
@@ -8,6 +11,10 @@ const Navbar = () => {
                 <img src={logo} alt="logo" style={{ width: '60px', height: '40px' }} />
             </div>
             <div className="flex items-center justify-end gap-4 text-2xl">
+                <a href={resume} target="_blank" rel="noopener noreferrer">
+                    <IoDocumentTextOutline />
+                </a>
+
                 <a href="https://www.linkedin.com/in/sribhuvanyellu/" target="_blank" rel="noopener noreferrer">
                     <FaLinkedin style={{color: 'white'}} />
                 </a>
@@ -19,4 +26,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default Navbar; 
