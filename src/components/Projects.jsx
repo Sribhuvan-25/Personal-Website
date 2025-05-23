@@ -130,7 +130,7 @@ const Projects = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 50 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-5 m-auto h-auto max-h-[90vh] w-[95%] max-w-3xl overflow-y-auto bg-neutral-900 rounded-xl shadow-2xl shadow-cyan-500/30 z-50"
+              className="fixed inset-5 m-auto h-auto max-h-[90vh] w-[95%] max-w-4xl overflow-y-auto bg-gradient-to-br from-neutral-950 to-cyan-950/20 rounded-xl shadow-2xl shadow-cyan-500/30 z-50"
             >
               <button 
                 onClick={(e) => {
@@ -138,28 +138,29 @@ const Projects = () => {
                   setExpandedId(null);
                   document.body.style.overflow = 'auto';
                 }}
-                className="absolute top-4 right-4 z-50 bg-neutral-800 rounded-full p-1.5 hover:bg-neutral-700 transition-colors"
+                className="absolute top-4 right-4 z-50 bg-neutral-800/80 backdrop-blur-sm rounded-full p-1.5 hover:bg-neutral-700 transition-colors"
               >
                 <XMarkIcon className="h-6 w-6 text-white" />
               </button>
 
-              <div className="flex flex-col lg:flex-row">
-                <div className="lg:w-2/5 bg-gradient-to-br from-neutral-950 to-cyan-950/20 p-6">
+              <div className="p-8">
+                {/* Header Section */}
+                <div className="text-center mb-8">
                   <div className="flex justify-center mb-6">
                     <img 
                       src={PROJECTS[expandedId].image} 
                       alt={PROJECTS[expandedId].title}
-                      className="w-full max-w-[220px] h-auto object-cover rounded-lg shadow-md"
+                      className="w-full max-w-[280px] h-auto object-cover rounded-lg shadow-lg"
                     />
                   </div>
-                  <div className="flex items-center justify-center gap-3 mb-4">
-                    <h2 className="text-2xl font-bold text-cyan-300 text-center">
+                  <div className="flex items-center justify-center gap-4 mb-4">
+                    <h2 className="text-3xl font-bold text-cyan-300">
                       {PROJECTS[expandedId].title}
                     </h2>
                     {PROJECTS[expandedId].github && (
                       <button
                         onClick={(e) => handleGitHubClick(e, PROJECTS[expandedId].github)}
-                        className="bg-neutral-800 rounded-full p-2 hover:bg-neutral-700 transition-colors"
+                        className="bg-neutral-800/80 backdrop-blur-sm rounded-full p-2.5 hover:bg-neutral-700 transition-colors"
                         title="View on GitHub"
                       >
                         <svg className="w-6 h-6 text-cyan-400" fill="currentColor" viewBox="0 0 24 24">
@@ -169,45 +170,34 @@ const Projects = () => {
                     )}
                   </div>
                 </div>
-                
-                <div className="p-6 lg:w-3/5 overflow-y-auto">
-                  <div className="flex items-center justify-center gap-3 mb-4 lg:hidden">
-                    <h2 className="text-2xl font-bold text-cyan-300 text-center">
-                      {PROJECTS[expandedId].title}
-                    </h2>
-                    {PROJECTS[expandedId].github && (
-                      <button
-                        onClick={(e) => handleGitHubClick(e, PROJECTS[expandedId].github)}
-                        className="bg-neutral-800 rounded-full p-2 hover:bg-neutral-700 transition-colors"
-                        title="View on GitHub"
-                      >
-                        <svg className="w-6 h-6 text-cyan-400" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                        </svg>
-                      </button>
-                    )}
-                  </div>
-                  
-                  <div className="mt-4 mb-6">
+
+                {/* Content Section */}
+                <div className="max-w-4xl mx-auto">
+                  <div className="mb-8">
+                    <h3 className="text-xl font-semibold text-cyan-300 mb-4 text-center">Project Details</h3>
                     <ul className="space-y-4 text-neutral-300">
                       {PROJECTS[expandedId].description.map((point, index) => (
                         <li key={index} className="flex items-start">
                           <span className="inline-block h-2 w-2 mt-2 mr-3 rounded-full bg-cyan-400 flex-shrink-0"></span>
-                          <span>{point}</span>
+                          <span className="text-base leading-relaxed">{point}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                   
-                  <div className="flex flex-wrap gap-2 mt-6 pb-4">
-                    {PROJECTS[expandedId].technologies.map((tech, techIdx) => (
-                      <span 
-                        key={techIdx} 
-                        className="bg-neutral-800 text-cyan-400 text-sm px-3 py-1.5 rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                  {/* Technologies Section */}
+                  <div className="text-center">
+                    <h3 className="text-xl font-semibold text-cyan-300 mb-4">Technologies Used</h3>
+                    <div className="flex flex-wrap justify-center gap-3">
+                      {PROJECTS[expandedId].technologies.map((tech, techIdx) => (
+                        <span 
+                          key={techIdx} 
+                          className="bg-neutral-800/80 backdrop-blur-sm text-cyan-400 text-sm px-4 py-2 rounded-full border border-cyan-500/20"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
