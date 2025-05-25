@@ -1,5 +1,9 @@
-import tumor from "../assets/tumor.png";
-import driveThru from "../assets/driveThru.png";
+import Tumor from "../assets/TumorDetection.png";
+import DriveThruImage from "../assets/driveThru.png";
+import FitFusion from "../assets/FitFusion.png";
+import CipherCloud from "../assets/CipherCloud.png";
+import MelodyGenerator from "../assets/Melody.png";
+import sLang from "../assets/sLang.png";
 import NCR from "../assets/NCR_Corporation_logo.svg.png";
 import Pearson from "../assets/Pearson.png";
 import GSU from "../assets/GSU.jpg";
@@ -11,7 +15,28 @@ export const ABOUT_TEXT =
 
 export const EXPERIENCES = [
   {
-    year: "May 2024 - Aug 2024",
+    year: "Jan 2025 - Present",
+    image: Pearson,
+    role: "Software Engineer Intern (AI/ML)",
+    company: "Pearson VUE, Bloomington, MN",
+    description: [
+      "Built a Copilot agent with Teams Toolkit that surfaces precise answers from internal docs, slashing employee lookup time from minutes to seconds.",
+      "Prototyped a CrewAI multi-agent workflow that auto-summarizes Teams meetings and emails minutes, eliminating manual note-taking and proving CrewAI's integration value.",
+      "Integrated DiskANN vector indexing into the RAG service on PostgreSQL, 3x similarity-search speed and cutting retrieval latency.",
+      "Built an MCP server on Bookings-API with Claude + Perplexity for one-chat scheduling and related recommendations.",
+    ],
+    technologies: [
+      "Teams Toolkit",
+      "CrewAI",
+      "DiskANN",
+      "PostgreSQL",
+      "RAG",
+      "Claude",
+      "Perplexity",
+    ],
+  },
+  {
+    year: "May 2024 - Dec 2024",
     image: Pearson,
     role: "Software Engineer Intern (Full Stack Development)",
     company: "Pearson VUE, Bloomington, MN",
@@ -113,7 +138,7 @@ export const RESEARCH = [
 export const PROJECTS = [
   {
     title: "Drive-Thru Vision [Hackathon Project]",
-    image: driveThru,
+    image: DriveThruImage,
     description: [
       "Executed automated license plate recognition within drive-thru systems, enabling personalized menus for customers.",
       "Implemented a machine learning algorithm and computer vision model using OpenCV and Tesseract OCR, achieving 80% accuracy.",
@@ -123,7 +148,7 @@ export const PROJECTS = [
   },
   {
     title: "Tumor Detection",
-    image: tumor,
+    image: Tumor,
     description: [
       "Proposed and performed tumor detection using advanced image classification techniques tailored for brain MRIs.",
       "Prepared 3 distinct CNN architectures and 2 traditional ML models, processing 500+ images across 4 different classes.",
@@ -134,6 +159,7 @@ export const PROJECTS = [
   },
   {
     title: "CipherCloud",
+    image: CipherCloud,
     description: [
       "Developed a zero-knowledge cloud storage architecture where the cloud provider has no usable knowledge of user data or keys without sacrificing speed or usability.",
       "Implemented client-side encryption with AES-256-GCM for file sealing and RSA-OAEP for wrapping 256-bit Data-Encryption Keys, ensuring private keys never leave the user's device.",
@@ -155,6 +181,7 @@ export const PROJECTS = [
   },
   {
     title: "FitFusion-AI",
+    image: FitFusion,
     description: [
       "Developed an AI-driven platform providing personalized health and fitness guidance through advanced Retrieval-Augmented Generation (RAG) architecture.",
       "Integrated Pinecone's vector database and OpenAI's GPT-4 model to efficiently process user queries and deliver context-aware, real-time responses.",
@@ -175,6 +202,7 @@ export const PROJECTS = [
   },
   {
     title: "Melody Generator",
+    image: MelodyGenerator,
     description: [
       "Designed and implemented a CNN-LSTM deep learning model to generate intricate musical melodies using advanced AI techniques for creative applications.",
       "Utilized three key musical features—pitch, duration, and offset—to produce high-quality compositions with sophisticated musical structure.",
@@ -193,6 +221,7 @@ export const PROJECTS = [
   },
   {
     title: "sLang",
+    image: sLang,
     description: [
       "Developed a comprehensive lexical and syntax analyzer to process and validate source code for a simplified programming language using Python.",
       "Implemented lexical analysis phase that scans source code to generate structured sequence of tokens, identifying keywords, identifiers, operators, and literals.",

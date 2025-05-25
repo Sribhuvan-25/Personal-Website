@@ -1,37 +1,24 @@
 import logo from "../assets/nameLogo.png"
-import { FaLinkedin, FaGithub } from 'react-icons/fa';
-import { IoDocumentTextOutline } from "react-icons/io5";
-import { RiArticleLine } from "react-icons/ri";
+import { FaLinkedin, FaGithub,  } from 'react-icons/fa';
 import resume from "../assets/resume.pdf";
-import { Link } from 'react-router-dom';
+import { IoDocumentTextOutline } from "react-icons/io5";
 
-const Navbar = () => {
+const Navbar = ({ isDarkMode, toggleDarkMode }) => {
     return (
         <nav className="mb-20 flex items-center justify-between py-4 px-8">
             <div className="flex flex-shrink-0 items-center">
-                <Link to="/">
-                    <img src={logo} alt="logo" style={{ width: '60px', height: '40px' }} />
-                </Link>
-            </div>
-            <div className="flex items-center space-x-6">
-                <Link to="/" className="text-neutral-300 hover:text-cyan-300 transition-colors">
-                    Home
-                </Link>
-                <Link to="/blog" className="text-neutral-300 hover:text-cyan-300 transition-colors flex items-center gap-1">
-                    <RiArticleLine />
-                    Blog
-                </Link>
+                <img src={logo} alt="logo" style={{ width: '60px', height: '40px' }} />
             </div>
             <div className="flex items-center justify-end gap-4 text-2xl">
-                <a href={resume} target="_blank" rel="noopener noreferrer">
+                <a href={resume} target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors">
                     <IoDocumentTextOutline />
                 </a>
 
-                <a href="https://www.linkedin.com/in/sribhuvanyellu/" target="_blank" rel="noopener noreferrer">
-                    <FaLinkedin style={{color: 'white'}} />
+                <a href="https://www.linkedin.com/in/sribhuvanyellu/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors">
+                    <FaLinkedin />
                 </a>
-                <a href="https://github.com/Sribhuvan-25" target="_blank" rel="noopener noreferrer">
-                    <FaGithub style={{color: 'white'}}/>
+                <a href="https://github.com/Sribhuvan-25" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors">
+                    <FaGithub />
                 </a>
             </div>
         </nav>
