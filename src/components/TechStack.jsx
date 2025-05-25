@@ -2,7 +2,7 @@ import { RiReactjsLine } from "react-icons/ri"
 import { TbBrandNextjs } from "react-icons/tb"
 import { SiMongodb } from "react-icons/si"
 import { FaNodeJs } from "react-icons/fa"
-import { inView, motion } from "framer-motion"
+import { motion } from "framer-motion"
 import { FaPython } from "react-icons/fa";
 import { SiTensorflow } from "react-icons/si";
 import { SiPytorch } from "react-icons/si";
@@ -27,7 +27,7 @@ const iconAnimaiton = (duration) => ({
 
 const TechStack = () => {
   return (
-    <div className="border-b border-neutral-800 pb-24">
+    <div className="pb-24">
         <motion.h2
         whileInView={{opacity: 1, y: 0}}
         initial={{opacity: 0, y: -100}}
