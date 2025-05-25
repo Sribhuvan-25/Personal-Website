@@ -11,15 +11,15 @@ const Navbar = () => {
                 <img src={logo} alt="logo" style={{ width: '60px', height: '40px' }} />
             </div>
             <div className="flex items-center justify-end gap-4 text-2xl">
-                <a href={resume} target="_blank" rel="noopener noreferrer">
+                <a href={resume} target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors">
                     <IoDocumentTextOutline />
                 </a>
 
-                <a href="https://www.linkedin.com/in/sribhuvanyellu/" target="_blank" rel="noopener noreferrer">
-                    <FaLinkedin style={{color: 'white'}} />
+                <a href="https://www.linkedin.com/in/sribhuvanyellu/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors">
+                    <FaLinkedin />
                 </a>
-                <a href="https://github.com/Sribhuvan-25" target="_blank" rel="noopener noreferrer">
-                    <FaGithub style={{color: 'white'}}/>
+                <a href="https://github.com/Sribhuvan-25" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors">
+                    <FaGithub />
                 </a>
             </div>
         </nav>
