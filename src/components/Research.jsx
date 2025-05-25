@@ -1,7 +1,7 @@
 import { RESEARCH } from "../constants"
 import { useState, useEffect, useRef } from "react"
 
-const Research = () => {
+const Research = ({ isDarkMode }) => {
   const [expandedId, setExpandedId] = useState(null);
   const tileRefs = useRef({});
   const modalRef = useRef(null);
@@ -43,15 +43,21 @@ const Research = () => {
           <div 
             key={idx}
             ref={el => tileRefs.current[idx] = el}
-            className={`bg-neutral-900 rounded-xl overflow-hidden shadow-lg transition-all duration-300 
+            className={`${
+              isDarkMode ? 'bg-neutral-900' : 'bg-gradient-to-br from-white via-gray-50 to-teal-50/30 backdrop-blur-sm'
+            } rounded-xl overflow-hidden shadow-lg transition-all duration-300 
               hover:shadow-teal-500/20 group cursor-pointer relative`}
             onClick={() => toggleExpand(idx)}
           >
             <div className="relative h-52 overflow-hidden">
-              <div className="absolute top-0 right-0 bg-neutral-800/80 backdrop-blur-sm px-3 py-1 m-2 rounded-full text-sm text-neutral-300 z-10">
+              <div className={`absolute top-0 right-0 backdrop-blur-sm px-3 py-1 m-2 rounded-full text-sm z-10 ${
+                isDarkMode ? 'bg-neutral-800/80 text-neutral-300' : 'bg-white/80 text-gray-700'
+              }`}>
                 {research.year}
               </div>
-              <div className="flex items-center justify-center h-full bg-gradient-to-br from-neutral-950 to-teal-950/20">
+              <div className={`flex items-center justify-center h-full ${
+                isDarkMode ? 'bg-gradient-to-br from-neutral-950 to-teal-950/20' : 'bg-gradient-to-br from-gray-50 to-teal-100/30'
+              }`}>
                 <img 
                   src={research.image} 
                   alt={research.company}
@@ -66,16 +72,22 @@ const Research = () => {
             </div>
             
             <div className="p-5">
-              <h3 className="text-xl font-semibold mb-1 text-white group-hover:text-teal-300 transition-colors">
+              <h3 className={`text-xl font-semibold mb-1 transition-colors ${
+                isDarkMode ? 'text-white group-hover:text-teal-300' : 'text-gray-900 group-hover:text-teal-600'
+              }`}>
                 {research.role}
               </h3>
-              <p className="text-sm text-neutral-400 mb-3">{research.company}</p>
+              <p className={`text-sm mb-3 ${
+                isDarkMode ? 'text-neutral-400' : 'text-gray-600'
+              }`}>{research.company}</p>
               
               <div className="flex flex-wrap gap-2 mt-3">
                 {research.technologies.map((tech, techIdx) => (
                   <span 
                     key={techIdx} 
-                    className="bg-neutral-800 text-teal-400 text-xs px-2 py-1 rounded-full"
+                    className={`text-xs px-2 py-1 rounded-full ${
+                      isDarkMode ? 'bg-neutral-800 text-teal-400' : 'bg-teal-100 text-teal-700'
+                    }`}
                   >
                     {tech}
                   </span>
