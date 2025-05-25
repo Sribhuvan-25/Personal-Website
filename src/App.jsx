@@ -1,11 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import Hero from './components/Me'
-import Experience from './components/Experience'
-import Research from './components/Research'
-import Projects from './components/Projects'
-import TechStack from './components/TechStack'
-import Contact from './components/Contact'
+import Home from './components/Home'
+import Blog from './routes/Blog'
+import Post from './routes/Post'
 
 // Particle Network Component
 const ParticleNetwork = ({ isDarkMode }) => {
@@ -183,12 +181,12 @@ const App = () => {
 
       <div className='container mx-auto px-4'> 
         <Navbar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-        <Hero />
-        <Experience isDarkMode={isDarkMode} />
-        <Research isDarkMode={isDarkMode} />
-        <Projects isDarkMode={isDarkMode} />
-        <TechStack />
-        <Contact />
+        
+        <Routes>
+          <Route path="/" element={<Home isDarkMode={isDarkMode} />} />
+          <Route path="/blog" element={<Blog isDarkMode={isDarkMode} />} />
+          <Route path="/blog/:slug" element={<Post isDarkMode={isDarkMode} />} />
+        </Routes>
       </div>
     </div>
   )

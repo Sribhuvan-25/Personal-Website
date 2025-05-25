@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "ai-revolution-2024",
+    "title": "The AI Revolution: How Machine Learning is Transforming Industries in 2024",
+    "date": "2024-01-15",
+    "excerpt": "Exploring the latest developments in artificial intelligence and how they're reshaping everything from healthcare to finance.",
+    "hero": "/blog_img/default.jpg",
+    "tags": ["AI", "Machine Learning", "Technology", "Innovation", "Future"]
+  },
+  {
+    "slug": "web-development-trends",
+    "title": "Modern Web Development: Trends and Technologies to Watch",
+    "date": "2024-01-10",
+    "excerpt": "A comprehensive look at the latest web development frameworks, tools, and best practices that are defining the industry.",
+    "hero": "/blog_img/default.jpg",
+    "tags": ["Web Development", "React", "JavaScript", "Frontend", "Technology"]
+  },
+  {
+    "slug": "cloud-computing-future",
+    "title": "The Future of Cloud Computing: Edge Computing and Beyond",
+    "date": "2024-01-05",
+    "excerpt": "Understanding how edge computing, serverless architectures, and distributed systems are evolving the cloud landscape.",
+    "hero": "/blog_img/default.jpg",
+    "tags": ["Cloud Computing", "Edge Computing", "AWS", "Technology", "Infrastructure"]
+  },
+  {
+    "slug": "cybersecurity-best-practices",
+    "title": "Cybersecurity in 2024: Essential Practices for Developers",
+    "date": "2023-12-28",
+    "excerpt": "Learn about the latest security threats and how to protect your applications with modern cybersecurity practices.",
+    "hero": "/blog_img/default.jpg",
+    "tags": ["Cybersecurity", "Security", "Development", "Best Practices", "Privacy"]
+  },
+  {
+    "slug": "data-science-insights",
+    "title": "Data Science Breakthroughs: From Analytics to Actionable Insights",
+    "date": "2023-12-20",
+    "excerpt": "Discover how data science is evolving with new tools, techniques, and methodologies for better decision-making.",
+    "hero": "/blog_img/default.jpg",
+    "tags": ["Data Science", "Analytics", "Python", "Machine Learning", "Big Data"]
+  },
+  {
+    "slug": "mobile-development-evolution",
+    "title": "Mobile Development Evolution: Native vs Cross-Platform in 2024",
+    "date": "2023-12-15",
+    "excerpt": "Comparing the latest mobile development approaches and choosing the right strategy for your next app.",
+    "hero": "/blog_img/default.jpg",
+    "tags": ["Mobile Development", "React Native", "Flutter", "iOS", "Android"]
+  }
+] 
