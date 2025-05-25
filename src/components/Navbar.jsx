@@ -3,8 +3,7 @@ import { FaLinkedin, FaGithub,  } from 'react-icons/fa';
 import resume from "../assets/resume.pdf";
 import { IoDocumentTextOutline } from "react-icons/io5";
 
-
-const Navbar = () => {
+const Navbar = ({ isDarkMode, toggleDarkMode }) => {
     return (
         <nav className="mb-20 flex items-center justify-between py-4 px-8">
             <div className="flex flex-shrink-0 items-center">
