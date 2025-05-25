@@ -1,5 +1,6 @@
 import logo from "../assets/nameLogo.png"
-import { FaLinkedin, FaGithub,  } from 'react-icons/fa';
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
+import { BsSun, BsMoon } from 'react-icons/bs';
 import resume from "../assets/resume.pdf";
 import { IoDocumentTextOutline } from "react-icons/io5";
 
@@ -17,9 +18,19 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
                 <a href="https://www.linkedin.com/in/sribhuvanyellu/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors">
                     <FaLinkedin />
                 </a>
+                
                 <a href="https://github.com/Sribhuvan-25" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors">
                     <FaGithub />
                 </a>
+
+                {/* Theme Toggle */}
+                <button
+                    onClick={toggleDarkMode}
+                    className="hover:text-blue-500 transition-colors p-1"
+                    title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+                >
+                    {isDarkMode ? <BsSun /> : <BsMoon />}
+                </button>
             </div>
         </nav>
     );
