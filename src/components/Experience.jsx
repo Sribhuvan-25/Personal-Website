@@ -1,10 +1,33 @@
-import { EXPERIENCES } from "../constants"
 import { useState, useEffect, useRef } from "react"
+import contentService from '../services/contentService.js'
 
 const Experience = ({ isDarkMode }) => {
+  const [experiences, setExperiences] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [expandedId, setExpandedId] = useState(null);
   const tileRefs = useRef({});
   const modalRef = useRef(null);
+
+  // Fetch experience data
+  useEffect(() => {
+    const fetchExperiences = async () => {
+      try {
+        setLoading(true);
+        const data = await contentService.getExperience();
+        setExperiences(data || []);
+        setError(null);
+      } catch (err) {
+        console.error('Failed to fetch experience data:', err);
+        setError(err.message);
+        setExperiences([]); // Fallback to empty array
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchExperiences();
+  }, []);
 
   const toggleExpand = (idx) => {
     setExpandedId(expandedId === idx ? null : idx);
@@ -34,12 +57,49 @@ const Experience = ({ isDarkMode }) => {
     };
   }, [expandedId]);
 
+  // Loading state
+  if (loading) {
+    return (
+      <div className="pb-4">
+        <h2 className="my-20 text-center text-4xl">Experience</h2>
+        <div className="flex justify-center items-center py-20">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500"></div>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="pb-4">
+        <h2 className="my-20 text-center text-4xl">Experience</h2>
+        <div className="text-center py-20">
+          <p className="text-red-500 mb-2">Failed to load experience data</p>
+          <p className="text-sm text-gray-500">{error}</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Empty state
+  if (!experiences || experiences.length === 0) {
+    return (
+      <div className="pb-4">
+        <h2 className="my-20 text-center text-4xl">Experience</h2>
+        <div className="text-center py-20">
+          <p className="text-gray-500">No experience data available</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="pb-4 relative">
       <h2 className="my-20 text-center text-4xl">Experience</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-        {EXPERIENCES.map((experience, idx) => (
+        {experiences.map((experience, idx) => (
           <div 
             key={idx}
             ref={el => tileRefs.current[idx] = el}
@@ -59,14 +119,14 @@ const Experience = ({ isDarkMode }) => {
                 isDarkMode ? 'bg-gradient-to-br from-neutral-950 to-purple-950/20' : 'bg-gradient-to-br from-gray-50 to-purple-100/30'
               }`}>
                 <img 
-                  src={experience.image} 
+                  src={contentService.getImageUrl(experience.image)} 
                   alt={experience.company}
                   className="h-28 w-28 object-contain drop-shadow-lg"
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                 <p className="text-sm text-white line-clamp-3">
-                  {experience.description[0]}
+                  {experience.description && experience.description[0]}
                 </p>
               </div>
             </div>
@@ -82,7 +142,7 @@ const Experience = ({ isDarkMode }) => {
               }`}>{experience.company}</p>
               
               <div className="flex flex-wrap gap-2 mt-3">
-                {experience.technologies.map((tech, techIdx) => (
+                {experience.technologies && experience.technologies.map((tech, techIdx) => (
                   <span 
                     key={techIdx} 
                     className={`text-xs px-2 py-1 rounded-full ${
@@ -99,7 +159,7 @@ const Experience = ({ isDarkMode }) => {
       </div>
 
       {/* Modal Overlay */}
-      {expandedId !== null && (
+      {expandedId !== null && experiences[expandedId] && (
         <>
           <div 
             className="fixed inset-0 bg-black/70 backdrop-blur-sm z-40"
@@ -129,19 +189,19 @@ const Experience = ({ isDarkMode }) => {
               <div className="text-center mb-8">
                 <div className="flex justify-center mb-6">
                   <img 
-                    src={EXPERIENCES[expandedId].image} 
-                    alt={EXPERIENCES[expandedId].company}
+                    src={contentService.getImageUrl(experiences[expandedId].image)} 
+                    alt={experiences[expandedId].company}
                     className="w-full max-w-[160px] h-auto object-contain drop-shadow-lg"
                   />
                 </div>
                 <h3 className="text-3xl font-bold text-purple-300 mb-2">
-                  {EXPERIENCES[expandedId].role}
+                  {experiences[expandedId].role}
                 </h3>
                 <p className="text-lg text-neutral-300 mb-4">
-                  {EXPERIENCES[expandedId].company}
+                  {experiences[expandedId].company}
                 </p>
                 <p className="text-sm text-neutral-400 font-medium">
-                  {EXPERIENCES[expandedId].year}
+                  {experiences[expandedId].year}
                 </p>
               </div>
 
@@ -150,7 +210,7 @@ const Experience = ({ isDarkMode }) => {
                 <div className="mb-8">
                   <h3 className="text-xl font-semibold text-purple-300 mb-4 text-center">Experience Details</h3>
                   <ul className="space-y-4 text-neutral-300">
-                    {EXPERIENCES[expandedId].description.map((point, index) => (
+                    {experiences[expandedId].description && experiences[expandedId].description.map((point, index) => (
                       <li key={index} className="flex items-start">
                         <span className="inline-block h-2 w-2 mt-2 mr-3 rounded-full bg-purple-400 flex-shrink-0"></span>
                         <span className="text-base leading-relaxed">{point}</span>
@@ -163,7 +223,7 @@ const Experience = ({ isDarkMode }) => {
                 <div className="text-center">
                   <h3 className="text-xl font-semibold text-purple-300 mb-4">Technologies Used</h3>
                   <div className="flex flex-wrap justify-center gap-3">
-                    {EXPERIENCES[expandedId].technologies.map((tech, techIdx) => (
+                    {experiences[expandedId].technologies && experiences[expandedId].technologies.map((tech, techIdx) => (
                       <span 
                         key={techIdx} 
                         className="bg-neutral-800/80 backdrop-blur-sm text-purple-400 text-sm px-4 py-2 rounded-full border border-purple-500/20"

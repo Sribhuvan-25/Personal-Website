@@ -1,10 +1,33 @@
-import { RESEARCH } from "../constants"
 import { useState, useEffect, useRef } from "react"
+import contentService from '../services/contentService.js'
 
 const Research = ({ isDarkMode }) => {
+  const [research, setResearch] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [expandedId, setExpandedId] = useState(null);
   const tileRefs = useRef({});
   const modalRef = useRef(null);
+
+  // Fetch research data
+  useEffect(() => {
+    const fetchResearch = async () => {
+      try {
+        setLoading(true);
+        const data = await contentService.getResearch();
+        setResearch(data || []);
+        setError(null);
+      } catch (err) {
+        console.error('Failed to fetch research data:', err);
+        setError(err.message);
+        setResearch([]); // Fallback to empty array
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchResearch();
+  }, []);
 
   const toggleExpand = (idx) => {
     setExpandedId(expandedId === idx ? null : idx);
@@ -34,12 +57,49 @@ const Research = ({ isDarkMode }) => {
     };
   }, [expandedId]);
 
+  // Loading state
+  if (loading) {
+    return (
+      <div className="pb-4">
+        <h2 className="my-20 text-center text-4xl">Research Experience</h2>
+        <div className="flex justify-center items-center py-20">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-500"></div>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="pb-4">
+        <h2 className="my-20 text-center text-4xl">Research Experience</h2>
+        <div className="text-center py-20">
+          <p className="text-red-500 mb-2">Failed to load research data</p>
+          <p className="text-sm text-gray-500">{error}</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Empty state
+  if (!research || research.length === 0) {
+    return (
+      <div className="pb-4">
+        <h2 className="my-20 text-center text-4xl">Research Experience</h2>
+        <div className="text-center py-20">
+          <p className="text-gray-500">No research data available</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="pb-4 relative">
       <h2 className="my-20 text-center text-4xl">Research Experience</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-        {RESEARCH.map((research, idx) => (
+        {research.map((researchItem, idx) => (
           <div 
             key={idx}
             ref={el => tileRefs.current[idx] = el}
@@ -53,20 +113,20 @@ const Research = ({ isDarkMode }) => {
               <div className={`absolute top-0 right-0 backdrop-blur-sm px-3 py-1 m-2 rounded-full text-sm z-10 ${
                 isDarkMode ? 'bg-neutral-800/80 text-neutral-300' : 'bg-white/80 text-gray-700'
               }`}>
-                {research.year}
+                {researchItem.year}
               </div>
               <div className={`flex items-center justify-center h-full ${
                 isDarkMode ? 'bg-gradient-to-br from-neutral-950 to-teal-950/20' : 'bg-gradient-to-br from-gray-50 to-teal-100/30'
               }`}>
                 <img 
-                  src={research.image} 
-                  alt={research.company}
+                  src={contentService.getImageUrl(researchItem.image)} 
+                  alt={researchItem.company}
                   className="h-28 w-28 object-contain drop-shadow-lg"
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                 <p className="text-sm text-white line-clamp-3">
-                  {research.description && research.description.length > 0 ? research.description[0] : "Click to view details"}
+                  {researchItem.description && researchItem.description.length > 0 ? researchItem.description[0] : "Click to view details"}
                 </p>
               </div>
             </div>
@@ -75,14 +135,14 @@ const Research = ({ isDarkMode }) => {
               <h3 className={`text-xl font-semibold mb-1 transition-colors ${
                 isDarkMode ? 'text-white group-hover:text-teal-300' : 'text-gray-900 group-hover:text-teal-600'
               }`}>
-                {research.role}
+                {researchItem.role}
               </h3>
               <p className={`text-sm mb-3 ${
                 isDarkMode ? 'text-neutral-400' : 'text-gray-600'
-              }`}>{research.company}</p>
+              }`}>{researchItem.company}</p>
               
               <div className="flex flex-wrap gap-2 mt-3">
-                {research.technologies.map((tech, techIdx) => (
+                {researchItem.technologies && researchItem.technologies.map((tech, techIdx) => (
                   <span 
                     key={techIdx} 
                     className={`text-xs px-2 py-1 rounded-full ${
@@ -99,7 +159,7 @@ const Research = ({ isDarkMode }) => {
       </div>
 
       {/* Modal Overlay */}
-      {expandedId !== null && (
+      {expandedId !== null && research[expandedId] && (
         <>
           <div 
             className="fixed inset-0 bg-black/70 backdrop-blur-sm z-40"
@@ -129,19 +189,19 @@ const Research = ({ isDarkMode }) => {
               <div className="text-center mb-8">
                 <div className="flex justify-center mb-6">
                   <img 
-                    src={RESEARCH[expandedId].image} 
-                    alt={RESEARCH[expandedId].company}
+                    src={contentService.getImageUrl(research[expandedId].image)} 
+                    alt={research[expandedId].company}
                     className="w-full max-w-[160px] h-auto object-contain drop-shadow-lg"
                   />
                 </div>
                 <h3 className="text-3xl font-bold text-teal-300 mb-2">
-                  {RESEARCH[expandedId].role}
+                  {research[expandedId].role}
                 </h3>
                 <p className="text-lg text-neutral-300 mb-4">
-                  {RESEARCH[expandedId].company}
+                  {research[expandedId].company}
                 </p>
                 <p className="text-sm text-neutral-400 font-medium">
-                  {RESEARCH[expandedId].year}
+                  {research[expandedId].year}
                 </p>
               </div>
 
@@ -149,9 +209,9 @@ const Research = ({ isDarkMode }) => {
               <div className="max-w-4xl mx-auto">
                 <div className="mb-8">
                   <h3 className="text-xl font-semibold text-teal-300 mb-4 text-center">Research Details</h3>
-                  {RESEARCH[expandedId].description && RESEARCH[expandedId].description.length > 0 ? (
+                  {research[expandedId].description && research[expandedId].description.length > 0 ? (
                     <ul className="space-y-4 text-neutral-300">
-                      {RESEARCH[expandedId].description.map((point, index) => (
+                      {research[expandedId].description.map((point, index) => (
                         <li key={index} className="flex items-start">
                           <span className="inline-block h-2 w-2 mt-2 mr-3 rounded-full bg-teal-400 flex-shrink-0"></span>
                           <span className="text-base leading-relaxed">{point}</span>
@@ -167,7 +227,7 @@ const Research = ({ isDarkMode }) => {
                 <div className="text-center">
                   <h3 className="text-xl font-semibold text-teal-300 mb-4">Technologies Used</h3>
                   <div className="flex flex-wrap justify-center gap-3">
-                    {RESEARCH[expandedId].technologies.map((tech, techIdx) => (
+                    {research[expandedId].technologies && research[expandedId].technologies.map((tech, techIdx) => (
                       <span 
                         key={techIdx} 
                         className="bg-neutral-800/80 backdrop-blur-sm text-teal-400 text-sm px-4 py-2 rounded-full border border-teal-500/20"

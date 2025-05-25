@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Home from './components/Home'
 import Blog from './routes/Blog'
 import Post from './routes/Post'
+import ContentServiceTest from './components/ContentServiceTest'
 
 // Particle Network Component
 const ParticleNetwork = ({ isDarkMode }) => {
@@ -186,6 +187,7 @@ const App = () => {
           <Route path="/" element={<Home isDarkMode={isDarkMode} />} />
           <Route path="/blog" element={<Blog isDarkMode={isDarkMode} />} />
           <Route path="/blog/:slug" element={<Post isDarkMode={isDarkMode} />} />
+          <Route path="/test-content-service" element={<ContentServiceTest isDarkMode={isDarkMode} />} />
         </Routes>
       </div>
     </div>
