@@ -1,5 +1,5 @@
 import Tumor from "../assets/TumorDetection.png";
-import DriveThru from "../assets/DriveThru.png";
+import DriveThruImage from "../assets/DriveThru.png";
 import FitFusion from "../assets/FitFusion.png";
 import CipherCloud from "../assets/CipherCloud.png";
 import MelodyGenerator from "../assets/Melody.png";
@@ -138,7 +138,7 @@ export const RESEARCH = [
 export const PROJECTS = [
   {
     title: "Drive-Thru Vision [Hackathon Project]",
-    image: DriveThru,
+    image: DriveThruImage,
     description: [
       "Executed automated license plate recognition within drive-thru systems, enabling personalized menus for customers.",
       "Implemented a machine learning algorithm and computer vision model using OpenCV and Tesseract OCR, achieving 80% accuracy.",
