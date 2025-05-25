@@ -51,8 +51,8 @@ function Post({ isDarkMode }) {
             to="/blog" 
             className={`inline-block px-6 py-3 rounded-lg transition-colors ${
               isDarkMode 
-                ? 'bg-orange-600 hover:bg-orange-700 text-white' 
-                : 'bg-orange-600 hover:bg-orange-700 text-white'
+                ? 'bg-blue-600 hover:bg-blue-700 text-white' 
+                : 'bg-blue-600 hover:bg-blue-700 text-white'
             }`}
           >
             Back to Blog
@@ -127,8 +127,8 @@ function Post({ isDarkMode }) {
                   key={tag} 
                   className={`text-xs px-3 py-1 rounded-full ${
                     isDarkMode 
-                      ? 'bg-orange-500/20 text-orange-300' 
-                      : 'bg-orange-100 text-orange-700'
+                      ? 'bg-blue-500/20 text-blue-300' 
+                      : 'bg-blue-100 text-blue-700'
                   }`}
                 >
                   {tag}
@@ -199,8 +199,8 @@ function Post({ isDarkMode }) {
                 to="/blog" 
                 className={`inline-flex items-center px-4 py-2 rounded-lg transition-colors ${
                   isDarkMode 
-                    ? 'bg-orange-600 hover:bg-orange-700 text-white' 
-                    : 'bg-orange-600 hover:bg-orange-700 text-white'
+                    ? 'bg-blue-600 hover:bg-blue-700 text-white' 
+                    : 'bg-blue-600 hover:bg-blue-700 text-white'
                 }`}
               >
                 ← Back to All Posts

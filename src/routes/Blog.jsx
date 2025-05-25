@@ -95,17 +95,10 @@ function Blog({ isDarkMode }) {
                 className={`relative rounded-lg p-6 cursor-pointer transition-all duration-300 ${
                   isDarkMode 
                     ? 'bg-neutral-900/60 backdrop-blur-sm hover:bg-neutral-800/70' 
-                    : 'bg-gradient-to-br from-white via-gray-50 to-orange-50/30 backdrop-blur-sm hover:shadow-lg'
+                    : 'bg-gradient-to-br from-white via-gray-50 to-blue-50/30 backdrop-blur-sm hover:shadow-lg'
                 }`}
                 onClick={() => setSelectedPost(post)}
               >
-                {/* Year Badge */}
-                <div className={`absolute top-4 right-4 px-2 py-1 rounded text-xs font-medium ${
-                  isDarkMode ? 'bg-orange-500/20 text-orange-300' : 'bg-orange-100 text-orange-700'
-                }`}>
-                  {new Date(post.date).getFullYear()}
-                </div>
-
                 {/* Blog Image */}
                 <div className="w-full h-36 mb-4 rounded-lg overflow-hidden">
                   <img 
@@ -136,8 +129,8 @@ function Blog({ isDarkMode }) {
                         key={tag} 
                         className={`text-xs px-2 py-1 rounded ${
                           isDarkMode 
-                            ? 'bg-orange-500/20 text-orange-300' 
-                            : 'bg-orange-100 text-orange-700'
+                            ? 'bg-blue-500/20 text-blue-300' 
+                            : 'bg-blue-100 text-blue-700'
                         }`}
                       >
                         {tag}
@@ -217,8 +210,8 @@ function Blog({ isDarkMode }) {
                       key={tag} 
                       className={`text-xs px-2 py-1 rounded ${
                         isDarkMode 
-                          ? 'bg-orange-500/20 text-orange-300' 
-                          : 'bg-orange-100 text-orange-700'
+                          ? 'bg-blue-500/20 text-blue-300' 
+                          : 'bg-blue-100 text-blue-700'
                       }`}
                     >
                       {tag}
@@ -237,8 +230,8 @@ function Blog({ isDarkMode }) {
                     to={`/blog/${selectedPost.slug}`}
                     className={`inline-block px-4 py-2 rounded transition-colors ${
                       isDarkMode 
-                        ? 'bg-orange-600 hover:bg-orange-700 text-white' 
-                        : 'bg-orange-600 hover:bg-orange-700 text-white'
+                        ? 'bg-blue-600 hover:bg-blue-700 text-white' 
+                        : 'bg-blue-600 hover:bg-blue-700 text-white'
                     }`}
                   >
                     Read Full Article

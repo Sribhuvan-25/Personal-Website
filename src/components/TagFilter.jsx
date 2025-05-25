@@ -20,8 +20,8 @@ function TagFilter({ tags, selectedTags, onToggleTag, isDarkMode }) {
             className={`px-4 py-2 rounded-full text-sm transition-all duration-200 ${
               selectedTags.includes(tag)
                 ? isDarkMode 
-                  ? 'bg-orange-600 text-white shadow-lg shadow-orange-500/30'
-                  : 'bg-orange-600 text-white shadow-lg shadow-orange-500/30'
+                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
+                  : 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
                 : isDarkMode
                   ? 'bg-neutral-800 text-neutral-300 hover:bg-neutral-700'
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
