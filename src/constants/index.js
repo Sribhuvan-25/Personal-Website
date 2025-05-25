@@ -1,5 +1,5 @@
 import Tumor from "../assets/TumorDetection.png";
-import DriveThruImage from "../assets/DriveThru.png";
+import DriveThruImage from "../assets/driveThru.png";
 import FitFusion from "../assets/FitFusion.png";
 import CipherCloud from "../assets/CipherCloud.png";
 import MelodyGenerator from "../assets/Melody.png";
