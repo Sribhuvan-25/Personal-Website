@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 .vercel
 blog-config.env
+
+# Utility scripts and verification tools
+scripts/
