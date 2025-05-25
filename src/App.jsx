@@ -36,20 +36,8 @@ const App = () => {
         </div>
       </div>
 
-      {/* Dark mode toggle button */}
-      <button
-        onClick={toggleDarkMode}
-        className={`fixed top-4 right-4 z-50 p-2 rounded-full transition-all duration-300 text-sm ${
-          isDarkMode 
-            ? 'bg-yellow-400 text-gray-900 hover:bg-yellow-300' 
-            : 'bg-gray-800 text-yellow-400 hover:bg-gray-700'
-        }`}
-      >
-        {isDarkMode ? '☀️' : '🌙'}
-      </button>
-
       <div className='container mx-auto px-4'> 
-        <Navbar />
+        <Navbar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
         <Hero />
         <Experience />
         <Research />
