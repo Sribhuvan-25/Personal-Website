@@ -1,7 +1,6 @@
 import { PROJECTS } from "../constants"
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect, useRef } from "react"
-import { XMarkIcon } from '@heroicons/react/24/outline'
 
 const Projects = () => {
   const [expandedId, setExpandedId] = useState(null);
@@ -140,9 +139,9 @@ const Projects = () => {
                   setExpandedId(null);
                   document.body.style.overflow = 'auto';
                 }}
-                className="absolute top-4 right-4 z-50 bg-neutral-800/80 backdrop-blur-sm rounded-full p-1.5 hover:bg-neutral-700 transition-colors"
+                className="absolute top-4 right-4 z-50 bg-neutral-800/80 backdrop-blur-sm rounded-full p-2 hover:bg-neutral-700 transition-colors flex items-center justify-center w-8 h-8"
               >
-                <XMarkIcon className="h-6 w-6 text-white" />
+                <span className="text-white text-lg font-bold">×</span>
               </button>
 
               <div className="p-8">
