@@ -53,7 +53,9 @@ def main(dry_run=False):
     # Step 5: Get image and tags
     print("Fetching image and generating tags...")
     main_topic = bullets[0]["title"] if bullets else title
-    img_path, credit, link = image_tagger.fetch_image(main_topic, slug)
+    # Create a content summary for better image search
+    content_summary = outline if outline else final_post[:300]
+    img_path, credit, link = image_tagger.fetch_image(main_topic, slug, content_summary)
     tags = image_tagger.extract_tags(final_post)
     
     # Step 6: Write to markdown file

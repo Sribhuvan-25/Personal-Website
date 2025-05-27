@@ -27,3 +27,6 @@ blog-config.env
 
 # Utility scripts and verification tools
 scripts/
+
+# Content export directory (separate git repository)
+content-export/
