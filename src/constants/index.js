@@ -15,6 +15,26 @@ export const ABOUT_TEXT =
 
 export const EXPERIENCES = [
   {
+    year: "May 2025 - Present",
+    image: Pearson,
+    role: "Software Engineer Intern (AI/ML)",
+    company: "Pearson VUE, Bloomington, MN",
+    description: [
+      "Engineered real-time AI proctoring with Gemini-2.5-Flash at 30 FPS 92% detection confidence across 6 violation categories.",
+      "Boosted API throughput 4×, added thread-safe alerts and 95% frame-quality capture for 12–22s real-time violation display.",
+      "Developed Python facial-recognition module with Gemini-2.0-Flash API to verify student IDs against live webcam feeds.",
+      "Built GCP Vertex AI pipeline to fine-tune Gemini face-comparison model, achieving 92% accuracy on test size of 1,680.",
+    ],
+    technologies: [
+      "Gemini-2.5-Flash",
+      "Gemini-2.0-Flash",
+      "Python",
+      "GCP Vertex AI",
+      "Computer Vision",
+      "Facial Recognition",
+    ],
+  },
+  {
     year: "Jan 2025 - Present",
     image: Pearson,
     role: "Software Engineer Intern (AI/ML)",
@@ -104,20 +124,39 @@ export const EXPERIENCES = [
 
 export const RESEARCH = [
   {
-    year: "Jan 2024 - Present",
+    year: "Nov 2024 - Present",
     image: TReNDS,
     role: "Graduate Research Assistant",
     company: "TReNDS Center, Atlanta, GA",
     description: [
-      "Engineered end-to-end endoscopic image classification system using DenseNet and Grad-CAM++, achieving 90% accuracy.",
-      "Designed guided patch extraction and adaptive thresholding for precise polyp detection, enhancing model performance.",
-      "Created a meta-classifier ensemble with RandomForest, GradientBoosting, and LogisticRegression, boosting recall to 91%.",
+      "Converted high-dimensional microbial OTU abundance data into graph structures using Mantel test correlation analysis, enabling GCN training on biological networks with family-level taxonomic aggregation.",
+      "Developed multi-architecture GNN pipeline (GCN, ResGatedGraphConv, GAT) with 5-fold cross-validation, achieving  mse & R² scores of 0.92 and 5.1 respectively. Which is a significant improvement compared to traditional ML approaches on microbial metabolic parameter prediction.",
+      "Implemented GNNExplainer-based graph sparsification with adaptive edge importance thresholding (0.2 threshold), reducing graph complexity while maintaining predictive performance for interpretable biological insights.",
+      "Built hybrid ML system integrating GNN embeddings with 5 traditional models (LinearSVR, ExtraTrees, RandomForest, XGBoost, LightGBM) for robust model comparison.",
+    ],
+    technologies: [
+      "Graph Neural Networks",
+      "PyTorch Geometric",
+      "GNNExplainer",
+      "Biological Data Analysis",
+    ],
+  },
+  {
+    year: "Jan 2024 - Nov 2024",
+    image: TReNDS,
+    role: "Graduate Research Assistant",
+    company: "TReNDS Center, Atlanta, GA",
+    description: [
+      "Co-authored the paper and has been accepted to the 2025 47th Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC) conference.",
+      "Designed and implemented a deep-learning-based endoscopy system leveraging EfficientNetV3 trained on ~300 endoscopic images, achieving a state-of-the-art accuracy of 94%, significantly outperforming traditional deep learning models.",
+      "Developed and integrated a novel Dynamic Contextual Attention (DCA) mechanism, enabling the model to dynamically focus on clinically relevant regions, enhancing lesion segmentation and reducing false positives compared to baseline methods.",
+      "Optimized computational efficiency for real-time inference, ensuring low-latency predictions suitable for live endoscopic procedures, while maintaining high diagnostic accuracy for medical practitioners.",
     ],
     technologies: [
       "Deep Learning",
       "GradCAM++",
-      "Tensroflow",
-      "Pytorch",
+      "TensorFlow",
+      "PyTorch",
       "Image Processing",
     ],
   },
