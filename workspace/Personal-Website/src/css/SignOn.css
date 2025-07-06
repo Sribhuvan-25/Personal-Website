@@ -1,0 +1,44 @@
+body {
+    background-color: #1a1a1a;
+}
+
+.signon-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #ffffff;
+}
+
+.signon-title {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.signon-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.signon-form input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.signon-form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.signon-form button:hover {
+    background-color: #45a049;
+}
