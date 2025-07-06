@@ -6,6 +6,7 @@ import Research from './components/Research'
 import Projects from './components/Projects'
 import TechStack from './components/TechStack'
 import Contact from './components/Contact'
+import RandomContentButton from './components/RandomContentButton'
 
 // Particle Network Component
 const ParticleNetwork = ({ isDarkMode }) => {
@@ -189,6 +190,7 @@ const App = () => {
         <Projects isDarkMode={isDarkMode} />
         <TechStack />
         <Contact />
+        <RandomContentButton />
       </div>
     </div>
   )
