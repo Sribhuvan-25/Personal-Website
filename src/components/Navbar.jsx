@@ -31,6 +31,11 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
                 >
                     {isDarkMode ? <BsSun /> : <BsMoon />}
                 </button>
+
+                {/* Blog Navigation Button */}
+                <a href="#blog" className="hover:text-blue-500 transition-colors">
+                    Blog
+                </a>
             </div>
         </nav>
     );
