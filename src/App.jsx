@@ -6,6 +6,7 @@ import Research from './components/Research'
 import Projects from './components/Projects'
 import TechStack from './components/TechStack'
 import Contact from './components/Contact'
+import BlogPost from './components/BlogPost'; // Importing the BlogPost component
 
 // Particle Network Component
 const ParticleNetwork = ({ isDarkMode }) => {
@@ -189,6 +190,7 @@ const App = () => {
         <Projects isDarkMode={isDarkMode} />
         <TechStack />
         <Contact />
+        <BlogPost /> {/* Adding the BlogPost component to render it on the page */}
       </div>
     </div>
   )
