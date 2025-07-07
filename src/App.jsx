@@ -6,6 +6,7 @@ import Research from './components/Research'
 import Projects from './components/Projects'
 import TechStack from './components/TechStack'
 import Contact from './components/Contact'
+import SignUp from './components/SignUp'
 
 // Particle Network Component
 const ParticleNetwork = ({ isDarkMode }) => {
@@ -151,6 +152,7 @@ const ParticleNetwork = ({ isDarkMode }) => {
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(true)
+  const [showSignUp, setShowSignUp] = useState(false);
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode)
@@ -183,12 +185,16 @@ const App = () => {
 
       <div className='container mx-auto px-4'> 
         <Navbar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-        <Hero />
-        <Experience isDarkMode={isDarkMode} />
-        <Research isDarkMode={isDarkMode} />
-        <Projects isDarkMode={isDarkMode} />
-        <TechStack />
-        <Contact />
+        {showSignUp ? <SignUp /> : (
+          <>
+            <Hero />
+            <Experience isDarkMode={isDarkMode} />
+            <Research isDarkMode={isDarkMode} />
+            <Projects isDarkMode={isDarkMode} />
+            <TechStack />
+            <Contact />
+          </>
+        )}
       </div>
     </div>
   )
