@@ -6,6 +6,7 @@ import Research from './components/Research'
 import Projects from './components/Projects'
 import TechStack from './components/TechStack'
 import Contact from './components/Contact'
+import NewProjects from './components/NewProjects';
 
 // Particle Network Component
 const ParticleNetwork = ({ isDarkMode }) => {
@@ -187,6 +188,7 @@ const App = () => {
         <Experience isDarkMode={isDarkMode} />
         <Research isDarkMode={isDarkMode} />
         <Projects isDarkMode={isDarkMode} />
+        <NewProjects />
         <TechStack />
         <Contact />
       </div>
