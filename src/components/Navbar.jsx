@@ -3,6 +3,8 @@ import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import { BsSun, BsMoon } from 'react-icons/bs';
 import resume from "../assets/resume.pdf";
 import { IoDocumentTextOutline } from "react-icons/io5";
+import { FaBlog } from 'react-icons/fa'; // Importing blog icon
+import { Link } from 'react-router-dom'; // Importing Link for navigation
 
 const Navbar = ({ isDarkMode, toggleDarkMode }) => {
     return (
@@ -23,6 +25,11 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
                     <FaGithub />
                 </a>
 
+                {/* Blog Page Link */}
+                <Link to="/blog" className="hover:text-blue-500 transition-colors">
+                    <FaBlog />
+                </Link>
+
                 {/* Theme Toggle */}
                 <button
                     onClick={toggleDarkMode}
@@ -36,4 +43,4 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
     );
 };
 
-export default Navbar; 
+export default Navbar;
