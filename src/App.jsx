@@ -6,7 +6,7 @@ import Research from './components/Research'
 import Projects from './components/Projects'
 import TechStack from './components/TechStack'
 import Contact from './components/Contact'
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from '@vercel/analytics/react';
 
 // Particle Network Component
 const ParticleNetwork = ({ isDarkMode }) => {
