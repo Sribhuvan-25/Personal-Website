@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 .vercel
 blog-config.env
+
+# Python virtual environment
+.venv
