@@ -27,6 +27,7 @@ blog-config.env
 
 # Python virtual environment
 .venv
+.env
 
 # Content export directory (kept locally but not in main branch)
 content-export
