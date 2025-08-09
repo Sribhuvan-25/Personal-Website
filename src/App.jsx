@@ -7,6 +7,7 @@ import Projects from './components/Projects'
 import TechStack from './components/TechStack'
 import Contact from './components/Contact'
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 // Particle Network Component
 const ParticleNetwork = ({ isDarkMode }) => {
@@ -191,6 +192,7 @@ const App = () => {
         <TechStack />
         <Contact />
         <Analytics />
+        <SpeedInsights />
       </div>
     </div>
   )
