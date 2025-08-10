@@ -1,105 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import ReactMarkdown from 'react-markdown';
-import frontmatter from 'front-matter';
 
 function Post() {
   const { slug } = useParams();
-  const [post, setPost] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    // Fetch the markdown file
-    fetch(`/content/posts/${slug}.md`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Post not found');
-        }
-        return response.text();
-      })
-      .then(text => {
-        // Parse frontmatter
-        const parsed = frontmatter(text);
-        setPost({
-          content: parsed.body,
-          ...parsed.attributes
-        });
-        setIsLoading(false);
-      })
-      .catch(err => {
-        console.error('Error loading post:', err);
-        setError(err.message);
-        setIsLoading(false);
-      });
-  }, [slug]);
-
-  if (isLoading) {
-    return <div className="container mx-auto p-4">Loading post...</div>;
-  }
-
-  if (error) {
-    return (
-      <div className="container mx-auto p-4">
-        <p className="text-red-500">{error}</p>
-        <Link to="/blog" className="text-blue-600 hover:underline mt-4 inline-block">
-          ← Back to all posts
-        </Link>
-      </div>
-    );
-  }
 
   return (
-    <div className="container mx-auto p-4 max-w-4xl">
-      <Link to="/blog" className="text-blue-600 hover:underline mb-4 inline-block">
-        ← Back to all posts
-      </Link>
-      
-      <article>
-        <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
+    <div className="min-h-screen py-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Link to="/blog" className="text-cyan-400 hover:text-cyan-300 transition-colors mb-8 inline-block">
+          ← Back to all posts
+        </Link>
         
-        <div className="flex flex-wrap gap-2 mb-4">
-          {post.tags.map(tag => (
-            <span 
-              key={tag} 
-              className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-        
-        <p className="text-gray-500 mb-6">{post.date}</p>
-        
-        {post.hero && (
-          <div className="mb-6">
-            <img 
-              src={post.hero} 
-              alt={post.title} 
-              className="w-full h-auto rounded-lg"
-            />
-            {post.image_credit && (
-              <p className="text-sm text-gray-500 mt-1">
-                Photo by {post.image_credit}
-                {post.image_link && (
-                  <a 
-                    href={post.image_link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="ml-1 text-blue-600 hover:underline"
-                  >
-                    on Unsplash
-                  </a>
-                )}
-              </p>
-            )}
+        <div className="text-center py-20">
+          <div className="mb-8">
+            <div className="text-6xl mb-4">📝</div>
+            <h1 className="text-4xl font-bold mb-4 text-white">
+              Blog Post Coming Soon
+            </h1>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              The AI/ML blog post "{slug}" is currently being written. 
+              Check back soon for this exciting content!
+            </p>
           </div>
-        )}
-        
-        <div className="prose prose-lg max-w-none">
-          <ReactMarkdown>{post.content}</ReactMarkdown>
+          
+          <div className="bg-neutral-900 rounded-lg p-8 max-w-2xl mx-auto">
+            <h2 className="text-2xl font-semibold mb-4 text-cyan-300">What to Expect</h2>
+            <p className="text-gray-400 mb-4">
+              I'm working hard to bring you high-quality, informative content about artificial intelligence and machine learning.
+            </p>
+            <div className="flex justify-center space-x-4 text-sm text-gray-500">
+              <span>🤖 AI tutorials</span>
+              <span>🧠 ML algorithms</span>
+              <span>📊 Data insights</span>
+            </div>
+          </div>
         </div>
-      </article>
+      </div>
     </div>
   );
 }

@@ -154,12 +154,12 @@ const ParticleNetwork = ({ isDarkMode }) => {
   )
 }
 
-const HomePage = () => (
+const HomePage = ({ isDarkMode }) => (
   <>
     <Hero />
-    <Experience />
-    <Research />
-    <Projects />
+    <Experience isDarkMode={isDarkMode} />
+    <Research isDarkMode={isDarkMode} />
+    <Projects isDarkMode={isDarkMode} />
     <TechStack />
     <Contact />
     <Analytics />
@@ -203,7 +203,7 @@ const App = () => {
         <div className='container mx-auto px-4'>
           <Navbar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePage isDarkMode={isDarkMode} />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<Post />} />
           </Routes>
