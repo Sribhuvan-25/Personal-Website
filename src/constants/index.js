@@ -21,9 +21,9 @@ export const EXPERIENCES = [
     company: "Pearson VUE, Bloomington, MN",
     description: [
       "Engineered real-time AI proctoring with Gemini-2.5-Flash at 30 FPS 92% detection confidence across 6 violation categories.",
-      "Boosted API throughput 4×, added thread-safe alerts and 95% frame-quality capture for 12–22s real-time violation display.",
-      "Developed Python facial-recognition module with Gemini-2.0-Flash API to verify student IDs against live webcam feeds.",
-      "Built GCP Vertex AI pipeline to fine-tune Gemini face-comparison model, achieving 92% accuracy on test size of 1,680.",
+      "Developed GPT-4.1 CAG pipeline that generates self-help articles from client-guides, slashing article-creation time by 80%.",
+      "Engineered MCP server integrating Booking API for real-time appointment data, reducing manual support by 30%.",
+      "Prototyped LangGraph+Gemini multi-agent assistant automating exam scheduling, rescheduling, and results retrieval.",
     ],
     technologies: [
       "Gemini-2.5-Flash",
