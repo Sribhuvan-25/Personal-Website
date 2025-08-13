@@ -1,11 +1,12 @@
 import logo from "../assets/nameLogo.png"
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
-import { BsSun, BsMoon, BsGrid3X3, BsThreeDots, BsListCheck, BsListColumns, BsCardList, BsMenuButton, BsMenuButtonFill, BsMenuApp, BsGear, BsOption, BsList } from 'react-icons/bs';
+import { BsSun, BsMoon, BsList } from 'react-icons/bs';
 import resume from "../assets/resume.pdf";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { Link, useLocation } from 'react-router-dom';
 import { RiArticleLine } from 'react-icons/ri';
 import { useState, useRef, useEffect } from 'react';
+import { FaGoogleScholar } from "react-icons/fa6";
 
 const Navbar = ({ isDarkMode, toggleDarkMode }) => {
     const location = useLocation();
@@ -29,12 +30,6 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
 
     const menuItems = [
         {
-            icon: <IoDocumentTextOutline />,
-            label: 'Resume',
-            href: resume,
-            external: true
-        },
-        {
             icon: <FaLinkedin />,
             label: 'LinkedIn',
             href: 'https://www.linkedin.com/in/sribhuvanyellu/',
@@ -47,11 +42,23 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
             external: true
         },
         {
+            icon: <IoDocumentTextOutline />,
+            label: 'Resume',
+            href: resume,
+            external: true
+        },
+        {
             icon: <RiArticleLine />,
             label: 'Blog',
             href: '/blog',
             external: false
-        }
+        },
+        {
+            icon: <FaGoogleScholar />,
+            label: 'Google Scholar',
+            href: 'https://scholar.google.com/citations?user=cUw6RjUAAAAJ&hl=en&authuser=2',
+            external: true
+        },
     ];
 
     return (
