@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import Navbar from './components/Navbar'
-import Hero from './components/Me'
+import Me from './components/Me'
 import Experience from './components/Experience'
 import Research from './components/Research'
 import Projects from './components/Projects'
@@ -156,7 +156,7 @@ const ParticleNetwork = ({ isDarkMode }) => {
 
 const HomePage = ({ isDarkMode }) => (
   <>
-    <Hero />
+    <Me />
     <Experience isDarkMode={isDarkMode} />
     <Research isDarkMode={isDarkMode} />
     <Projects isDarkMode={isDarkMode} />

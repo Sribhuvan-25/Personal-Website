@@ -1,18 +1,18 @@
-import logo from "../assets/nameLogo.png"
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import { BsSun, BsMoon, BsList } from 'react-icons/bs';
-import resume from "../assets/resume.pdf";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { Link, useLocation } from 'react-router-dom';
 import { RiArticleLine } from 'react-icons/ri';
 import { useState, useRef, useEffect } from 'react';
 import { FaGoogleScholar } from "react-icons/fa6";
+import { usePersonalInfo } from "../hooks/useContent";
 
 const Navbar = ({ isDarkMode, toggleDarkMode }) => {
     const location = useLocation();
     const isHomePage = location.pathname === '/';
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
+    const { data: personalInfo } = usePersonalInfo();
 
     // Close dropdown when clicking outside
     useEffect(() => {
@@ -42,12 +42,6 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
             external: true
         },
         {
-            icon: <IoDocumentTextOutline />,
-            label: 'Resume',
-            href: resume,
-            external: true
-        },
-        {
             icon: <RiArticleLine />,
             label: 'Blog',
             href: '/blog',
@@ -64,7 +58,11 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
     return (
         <nav className="mb-20 flex items-center justify-between py-4 px-4 sm:px-8">
             <div className="flex flex-shrink-0 items-center">
-                <img src={logo} alt="logo" style={{ width: '60px', height: '40px' }} />
+                <img 
+                    src={personalInfo?.aboutImage || "https://via.placeholder.com/60x40?text=Logo"} 
+                    alt="logo" 
+                    style={{ width: '60px', height: '40px' }} 
+                />
             </div>
             
             <div className="flex items-center gap-2 sm:gap-4">

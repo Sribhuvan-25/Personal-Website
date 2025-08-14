@@ -1,7 +1,9 @@
-import { PROJECTS } from "../constants"
+import { useProjects } from "../hooks/useContent"
+import contentService from "../services/contentService"
 import { useState, useEffect, useRef } from "react"
 
 const Projects = ({ isDarkMode }) => {
+  const { data: projects, isLoading, error } = useProjects();
   const [expandedId, setExpandedId] = useState(null);
   const tileRefs = useRef({});
   const modalRef = useRef(null);
@@ -39,12 +41,48 @@ const Projects = ({ isDarkMode }) => {
     window.open(githubUrl, '_blank');
   };
 
+  // Show loading state
+  if (isLoading) {
+    return (
+      <div className="pb-4 relative">
+        <h2 className="my-20 text-center text-4xl">Projects</h2>
+        <div className="flex justify-center items-center h-64">
+          <div className="text-lg">Loading projects...</div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="pb-4 relative">
+        <h2 className="my-20 text-center text-4xl">Projects</h2>
+        <div className="flex justify-center items-center h-64">
+          <div className="text-lg text-red-500">Error loading projects</div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show empty state
+  if (!projects || projects.length === 0) {
+    return (
+      <div className="pb-4 relative">
+        <h2 className="my-20 text-center text-4xl">Projects</h2>
+        <div className="flex justify-center items-center h-64">
+          <div className="text-lg">No projects found</div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="pb-4 relative">
       <h2 className="my-20 text-center text-4xl">Projects</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-        {PROJECTS.map((project, idx) => (
+        {projects.map((project, idx) => (
           <div 
             key={idx}
             ref={el => tileRefs.current[idx] = el}
@@ -59,7 +97,7 @@ const Projects = ({ isDarkMode }) => {
             }`}>
               <div className="absolute inset-0 flex items-center justify-center p-4">
                 <img 
-                  src={project.image} 
+                  src={contentService.getImageUrl(project.image)} 
                   alt={project.title}
                   className="h-36 w-auto object-contain drop-shadow-lg"
                 />
@@ -144,18 +182,18 @@ const Projects = ({ isDarkMode }) => {
               <div className="text-center mb-8">
                 <div className="flex justify-center mb-6">
                   <img 
-                    src={PROJECTS[expandedId].image} 
-                    alt={PROJECTS[expandedId].title}
+                    src={contentService.getImageUrl(projects[expandedId].image)} 
+                    alt={projects[expandedId].title}
                     className="w-full max-w-[280px] h-auto object-cover rounded-lg shadow-lg"
                   />
                 </div>
                 <div className="flex items-center justify-center gap-4 mb-4">
                   <h2 className="text-3xl font-bold text-cyan-300">
-                    {PROJECTS[expandedId].title}
+                    {projects[expandedId].title}
                   </h2>
-                  {PROJECTS[expandedId].github && (
+                  {projects[expandedId].github && (
                     <button
-                      onClick={(e) => handleGitHubClick(e, PROJECTS[expandedId].github)}
+                      onClick={(e) => handleGitHubClick(e, projects[expandedId].github)}
                       className="bg-neutral-800/80 backdrop-blur-sm rounded-full p-2.5 hover:bg-neutral-700 transition-colors"
                       title="View on GitHub"
                     >
@@ -171,9 +209,9 @@ const Projects = ({ isDarkMode }) => {
               <div className="max-w-4xl mx-auto">
                 <div className="mb-8">
                   <h3 className="text-xl font-semibold text-cyan-300 mb-4 text-center">Project Details</h3>
-                  {PROJECTS[expandedId].description && PROJECTS[expandedId].description.length > 0 ? (
+                  {projects[expandedId].description && projects[expandedId].description.length > 0 ? (
                     <ul className="space-y-4 text-neutral-300">
-                      {PROJECTS[expandedId].description.map((point, index) => (
+                      {projects[expandedId].description.map((point, index) => (
                         <li key={index} className="flex items-start">
                           <span className="inline-block h-2 w-2 mt-2 mr-3 rounded-full bg-cyan-400 flex-shrink-0"></span>
                           <span className="text-base leading-relaxed">{point}</span>
@@ -189,7 +227,7 @@ const Projects = ({ isDarkMode }) => {
                 <div className="text-center">
                   <h3 className="text-xl font-semibold text-cyan-300 mb-4">Technologies Used</h3>
                   <div className="flex flex-wrap justify-center gap-3">
-                    {PROJECTS[expandedId].technologies.map((tech, techIdx) => (
+                    {projects[expandedId].technologies.map((tech, techIdx) => (
                       <span 
                         key={techIdx} 
                         className="bg-neutral-800/80 backdrop-blur-sm text-cyan-400 text-sm px-4 py-2 rounded-full border border-cyan-500/20"
