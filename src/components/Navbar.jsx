@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { RiArticleLine } from 'react-icons/ri';
 import { useState, useRef, useEffect } from 'react';
 import { FaGoogleScholar } from "react-icons/fa6";
-import { usePersonalInfo } from "../hooks/useContent";
+import { usePersonalInfo, useImageUrl } from "../hooks/useContent";
 
 const Navbar = ({ isDarkMode, toggleDarkMode }) => {
     const location = useLocation();
@@ -13,6 +13,7 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
     const { data: personalInfo } = usePersonalInfo();
+    const logoUrl = useImageUrl(personalInfo?.aboutImage);
 
     // Close dropdown when clicking outside
     useEffect(() => {
@@ -59,7 +60,7 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
         <nav className="mb-20 flex items-center justify-between py-4 px-4 sm:px-8">
             <div className="flex flex-shrink-0 items-center">
                 <img 
-                    src={personalInfo?.aboutImage || "https://via.placeholder.com/60x40?text=Logo"} 
+                    src={logoUrl || "https://via.placeholder.com/60x40?text=Logo"} 
                     alt="logo" 
                     style={{ width: '60px', height: '40px' }} 
                 />
