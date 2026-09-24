@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sribhuvan Yellu &middot; On Building Software That Has To Hold</title>
+<meta name="description" content="An essay on proctoring clients, ML pipelines and research code, by Sribhuvan Yellu, software engineer in Atlanta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --stock:#F2F2EE;
+    --stock-2:#EAEAE4;
+    --ink:#16161A;
+    --ink-soft:#3C3C44;
+    --ink-faint:#6E6E78;
+    --rule:#CFCFC6;
+    --rule-hair:#DEDED6;
+    --accent:#1F3A6E;
+    --accent-deep:#152747;
+    --measure:34.5rem;
+    --margin-col:15.5rem;
+    --gutter:2.75rem;
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root{
+      --stock:#141416;
+      --stock-2:#1B1B1E;
+      --ink:#E8E6E0;
+      --ink-soft:#BFBDB6;
+      --ink-faint:#8B8983;
+      --rule:#35353A;
+      --rule-hair:#2A2A2E;
+      --accent:#9DB6E0;
+      --accent-deep:#BFD0EE;
+    }
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+
+  html{
+    -webkit-text-size-adjust:100%;
+    font-variant-numeric:oldstyle-num proportional-nums;
+    font-feature-settings:"onum" 1,"kern" 1,"liga" 1;
+  }
+
+  body{
+    margin:0;
+    background:var(--stock);
+    color:var(--ink);
+    font-family:"Spectral",Charter,"Iowan Old Style",Georgia,serif;
+    font-weight:400;
+    font-size:clamp(1.0625rem,0.98rem + 0.36vw,1.1875rem);
+    line-height:1.72;
+    text-rendering:optimizeLegibility;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* faint horizontal laid-paper texture, no images */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.014) 0px,
+        rgba(0,0,0,0.014) 1px,
+        rgba(0,0,0,0) 1px,
+        rgba(0,0,0,0) 4px
+      );
+    mix-blend-mode:multiply;
+  }
+  @media (prefers-color-scheme: dark){
+    body::before{opacity:.5;mix-blend-mode:screen}
+  }
+
+  a{color:inherit;text-decoration:none}
+
+  .page{position:relative;z-index:1}
+
+  /* ---------- grid ---------- */
+
+  .sheet{
+    max-width:calc(var(--measure) + var(--gutter) + var(--margin-col) + 6rem);
+    margin:0 auto;
+    padding:0 3rem;
+  }
+
+  /* The text column flows at a fixed measure. Each annotated paragraph is
+     its own positioning context, and its sidenote is lifted out of flow into
+     the margin, top-aligned to that paragraph. The note takes no height in
+     the column, so the prose never develops gaps around a tall note. */
+  .row{max-width:calc(var(--measure) + var(--gutter) + var(--margin-col))}
+  .row > p,
+  .row > h2,
+  .row > blockquote,
+  .row > ul.register{max-width:var(--measure)}
+
+  .anno{
+    position:relative;
+    max-width:var(--measure);
+  }
+  .anno > p{margin-bottom:1.35em}
+
+  .anno > aside.margin{
+    position:absolute;
+    top:.18rem;
+    left:calc(100% + var(--gutter));
+    width:var(--margin-col);
+    margin:0;
+  }
+  /* Several notes on one paragraph: the wrapper becomes a two-column grid so
+     the note stack contributes its own height and can never collide with the
+     next group. Column one is pinned to the measure, so the prose keeps its
+     line length regardless of how tall the margin gets. */
+  .anno:has(> .notes){
+    display:grid;
+    grid-template-columns:var(--measure) var(--margin-col);
+    column-gap:var(--gutter);
+    max-width:calc(var(--measure) + var(--gutter) + var(--margin-col));
+    align-items:start;
+  }
+  .anno:has(> .notes) > p{grid-column:1;max-width:var(--measure)}
+  .anno > .notes{
+    grid-column:2;
+    padding-top:.18rem;
+    display:flex;
+    flex-direction:column;
+  }
+  .anno > .notes > aside.margin{
+    position:static;
+    width:auto;
+    margin:0 0 1.55rem;
+  }
+  .anno > .notes > aside.margin:last-child{margin-bottom:0}
+
+  /* ---------- masthead ---------- */
+
+  header.masthead{
+    padding:5.5rem 0 0;
+  }
+  .colophon{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.5rem 1.5rem;
+    align-items:baseline;
+    font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    font-size:.6875rem;
+    letter-spacing:.11em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    padding-bottom:.85rem;
+    border-bottom:1px solid var(--ink);
+  }
+  .colophon .folio{margin-left:auto}
+
+  h1.title{
+    font-weight:400;
+    font-size:clamp(2.15rem,1.4rem + 3.1vw,3.6rem);
+    line-height:1.06;
+    letter-spacing:-0.018em;
+    margin:2.6rem 0 0;
+    max-width:14ch;
+    text-wrap:balance;
+  }
+  h1.title em{
+    font-style:italic;
+    font-weight:300;
+  }
+  .standfirst{
+    margin:1.5rem 0 0;
+    max-width:44ch;
+    font-size:1.0625em;
+    font-style:italic;
+    font-weight:300;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+  .byline{
+    margin:2.4rem 0 0;
+    padding-top:.8rem;
+    border-top:1px solid var(--rule);
+    font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    font-size:.7rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+  .byline strong{
+    color:var(--ink);
+    font-weight:500;
+    letter-spacing:.14em;
+  }
+
+  /* ---------- body prose ---------- */
+
+  main{padding:3.75rem 0 0}
+
+  p{
+    margin:0 0 1.35em;
+    hyphens:auto;
+    -webkit-hyphens:auto;
+  }
+  /* Continuous-prose indents: every paragraph after the first in a section
+     gets a hanging first-line indent, including across .anno wrappers. */
+  .row p,
+  .anno p{text-indent:1.4em}
+  .row > p:first-of-type,
+  .lede,
+  h2 + p,
+  h2 + .anno > p,
+  .breath,
+  .breath + p,
+  .noindent{text-indent:0}
+  blockquote p,
+  blockquote + p{text-indent:0}
+  aside.margin p{text-indent:0}
+
+  .lede{text-indent:0}
+  .lede::first-letter{
+    float:left;
+    font-size:3.62em;
+    line-height:.82;
+    padding:0.06em 0.09em 0 0;
+    margin:0.03em 0 -0.06em 0;
+    font-weight:400;
+    color:var(--accent);
+  }
+  .lede::first-line{
+    font-variant-caps:small-caps;
+    letter-spacing:.03em;
+  }
+
+  h2{
+    font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    font-weight:500;
+    font-size:.6875rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin:3.4rem 0 1.5rem;
+    padding-bottom:.5rem;
+    border-bottom:1px solid var(--rule-hair);
+    text-indent:0;
+  }
+  h2 + p{text-indent:0}
+
+  .sc{
+    font-variant-caps:small-caps;
+    font-feature-settings:"smcp" 1,"onum" 1;
+    letter-spacing:.055em;
+    font-weight:500;
+  }
+
+  .breath{
+    text-indent:0;
+    margin:2.1rem 0 2.1rem;
+    text-align:center;
+    color:var(--ink-faint);
+    font-size:.95em;
+    letter-spacing:.9em;
+    user-select:none;
+  }
+
+  blockquote{
+    margin:1.9rem 0 1.9rem 0;
+    padding-left:1.4rem;
+    border-left:2px solid var(--accent);
+    font-style:italic;
+    font-weight:300;
+    color:var(--ink-soft);
+    text-indent:0;
+  }
+  blockquote p{margin:0;text-indent:0}
+
+  /* ---------- reference markers ---------- */
+
+  sup.ref{
+    font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    font-size:.58em;
+    font-weight:500;
+    line-height:0;
+    vertical-align:super;
+    letter-spacing:.02em;
+    color:var(--accent);
+    padding-left:.12em;
+  }
+  a.ref-anchor{
+    color:var(--accent);
+    text-decoration:none;
+  }
+  a.ref-anchor:hover sup.ref{
+    background:var(--accent);
+    color:var(--stock);
+    border-radius:1px;
+    padding:0 .18em 0 .2em;
+  }
+
+  /* ---------- sidenotes ---------- */
+
+  aside.margin{
+    font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    font-size:.7rem;
+    line-height:1.62;
+    letter-spacing:.005em;
+    color:var(--ink-soft);
+    margin:0 0 1.9rem;
+    padding-top:.42rem;
+    border-top:1px solid var(--rule);
+    text-indent:0;
+    hyphens:none;
+  }
+  aside.margin .num{
+    color:var(--accent);
+    font-weight:500;
+    letter-spacing:.06em;
+  }
+  aside.margin .who{
+    display:block;
+    color:var(--ink);
+    font-weight:500;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    font-size:.6875rem;
+    margin-bottom:.12rem;
+  }
+  aside.margin time,
+  aside.margin .when{
+    display:block;
+    color:var(--ink-faint);
+    letter-spacing:.11em;
+    font-size:.65rem;
+    text-transform:uppercase;
+    margin-bottom:.5rem;
+  }
+  aside.margin p{margin:0 0 .6rem;text-indent:0}
+  aside.margin p:last-child{margin-bottom:0}
+  aside.margin ul{
+    margin:0;
+    padding:0;
+    list-style:none;
+  }
+  aside.margin li{
+    margin:0 0 .45rem;
+    padding-left:.85rem;
+    text-indent:-.85rem;
+  }
+  aside.margin li::before{
+    content:"\2013\00a0\00a0";
+    color:var(--ink-faint);
+  }
+  aside.margin a{
+    color:var(--accent);
+    text-decoration:underline;
+    text-decoration-thickness:1px;
+    text-underline-offset:.16em;
+    text-decoration-color:var(--rule);
+    word-break:break-word;
+  }
+  aside.margin a:hover{text-decoration-color:var(--accent)}
+
+  .margin-label{
+    display:block;
+    font-size:.6rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-bottom:.55rem;
+  }
+
+  /* ---------- writing / links blocks ---------- */
+
+  .register{
+    list-style:none;
+    margin:1.6rem 0 0;
+    padding:0;
+    text-indent:0;
+  }
+  .register li{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:0 1.25rem;
+    align-items:baseline;
+    padding:.85rem 0;
+    border-top:1px solid var(--rule-hair);
+  }
+  .register li:last-child{border-bottom:1px solid var(--rule-hair)}
+  .register .t{
+    font-size:1.02em;
+    line-height:1.4;
+  }
+  .register .t a{
+    text-decoration:underline;
+    text-decoration-thickness:1px;
+    text-underline-offset:.2em;
+    text-decoration-color:var(--rule);
+  }
+  .register .t a:hover{text-decoration-color:var(--accent);color:var(--accent)}
+  .register .m{
+    font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    font-size:.65rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    white-space:nowrap;
+  }
+  .register .d{
+    grid-column:1/-1;
+    font-size:.92em;
+    color:var(--ink-soft);
+    line-height:1.55;
+    margin-top:.25rem;
+    max-width:56ch;
+  }
+
+  /* ---------- footer ---------- */
+
+  footer.imprint{
+    margin-top:4.5rem;
+    padding:1.5rem 0 5rem;
+    border-top:1px solid var(--ink);
+  }
+  .imprint .lines{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.55rem 2rem;
+    font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    font-size:.6875rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+  .imprint a{
+    color:var(--ink);
+    text-decoration:underline;
+    text-decoration-thickness:1px;
+    text-underline-offset:.22em;
+    text-decoration-color:var(--rule);
+  }
+  .imprint a:hover{color:var(--accent);text-decoration-color:var(--accent)}
+  .imprint .set{
+    margin-top:1.6rem;
+    font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    font-size:.625rem;
+    letter-spacing:.09em;
+    color:var(--ink-faint);
+    text-transform:uppercase;
+    max-width:60ch;
+    line-height:1.7;
+  }
+
+  /* ---------- focus ---------- */
+
+  a:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+    border-radius:1px;
+  }
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  .skip{
+    position:absolute;
+    left:-9999px;
+    top:0;
+    background:var(--ink);
+    color:var(--stock);
+    padding:.7rem 1.1rem;
+    font-family:"IBM Plex Mono",monospace;
+    font-size:.7rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    z-index:20;
+  }
+  .skip:focus{left:1rem;top:1rem}
+
+  /* ---------- narrow: sidenotes collapse inline ---------- */
+
+  @media (max-width:1080px){
+    :root{--measure:100%}
+    .sheet{max-width:42rem;padding:0 2rem}
+    .row{display:block;max-width:none}
+    .anno,
+    .anno:has(> .notes),
+    .anno:has(> aside.margin + aside.margin){
+      display:block;
+      position:static;
+      max-width:none;
+      grid-template-columns:none;
+    }
+    .anno:has(> .notes) > p{max-width:none}
+    .anno > aside.margin,
+    .anno > .notes > aside.margin{
+      position:static;
+      width:auto;
+    }
+    .anno > .notes{
+      position:static;
+      display:block;
+      width:auto;
+    }
+    aside.margin{
+      max-width:34rem;
+      margin:1.6rem 0 1.9rem 1.6rem;
+      padding:.42rem 0 0 1.05rem;
+      border-top:1px solid var(--rule);
+      border-left:1px solid var(--rule-hair);
+      font-size:.6875rem;
+    }
+  }
+
+  @media (max-width:560px){
+    body{line-height:1.66}
+    .sheet{padding:0 1.15rem}
+    header.masthead{padding-top:3.25rem}
+    main{padding-top:2.5rem}
+    h1.title{max-width:none;letter-spacing:-.012em}
+    .colophon{font-size:.625rem;letter-spacing:.09em;gap:.4rem 1rem}
+    .colophon .folio{margin-left:0}
+    .lede::first-letter{font-size:3.1em}
+    aside.margin{
+      margin:1.35rem 0 1.6rem .9rem;
+      padding-left:.85rem;
+      max-width:none;
+    }
+    .register li{grid-template-columns:1fr;gap:.2rem}
+    .register .m{white-space:normal}
+    .breath{letter-spacing:.6em}
+    blockquote{margin-left:0;padding-left:1rem}
+  }
+
+  @media print{
+    body::before{display:none}
+    body{background:#fff;color:#000}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#essay">Skip to the essay</a>
+
+<div class="page">
+<div class="sheet">
+
+  <header class="masthead">
+    <div class="colophon">
+      <span>Sribhuvan Yellu</span>
+      <span>Software Engineer</span>
+      <span>Atlanta, Georgia</span>
+      <span class="folio">Ed. 2026</span>
+    </div>
+
+    <h1 class="title">Software That Has To <em>Hold</em></h1>
+
+    <p class="standfirst">On proctoring clients that cannot crash, machine learning that has to be checkable, and why almost all of the interesting work happens below the part anyone demos.</p>
+
+    <p class="byline">An essay by <strong>Sribhuvan Yellu</strong>. Evidence in the margin.</p>
+  </header>
+
+  <main id="essay">
+  <article>
+
+    <!-- ===================== I ===================== -->
+    <div class="row">
+
+      <p class="lede">The first thing I learned shipping exam software is that the demo is never the product. A proctoring client looks trivial when you show it: a window opens, a camera turns on, a candidate takes a test. The actual product is everything that happens when a laptop sleeps mid-exam, when a webcam driver stops answering, when someone alt-tabs at second four hundred of a three hour certification. Those are not edge cases. At the volumes exam delivery runs at, they are Tuesday.</p>
+
+      <div class="anno">
+      <p>I work on the <span class="sc">OnVUE</span> proctoring client at Pearson.<a class="ref-anchor" href="#n1"><sup class="ref">1</sup></a> Right now I am moving it onto a shared-UI codebase so that Windows and macOS ship from one source tree instead of two that drift apart quietly for a year. That sentence is boring and the work is not. Two platforms that drifted apart means two different answers to what happens when the camera goes away, and only one of them was ever tested properly.</p>
+      <aside class="margin" id="n1">
+        <span class="num">1.</span>
+        <span class="who">Pearson</span>
+        <time datetime="2026">2026 &ndash; present &middot; Software Engineer II</time>
+        <ul>
+          <li>Migrating the OnVUE Electron client to a shared-UI codebase shipping Windows and macOS from one tree.</li>
+          <li>Camera and mic bridges between native code and the web layer, keeping BrowserLock on the session.</li>
+          <li>Runs a Claude multi-agent workflow for review and refactor passes.</li>
+        </ul>
+      </aside>
+    </div>
+
+      <p>Most of my time goes into the bridges between native platform code and the web layer, carrying camera and microphone through so <span class="sc">BrowserLock</span> keeps its grip on the session. A bridge is where the honest bugs live. Above it, the web app assumes a stream exists. Below it, the operating system reserves the right to take that stream away for reasons it will not explain. Somebody has to write down what happens in between, and if nobody does, the answer becomes whatever the last person to touch it happened to believe.</p>
+    </div>
+
+    <!-- ===================== II ===================== -->
+    <div class="row">
+      <h2>Trust is a device problem</h2>
+
+      <p class="noindent">The usual instinct in proctoring is to watch the human harder. More video, more flags, more reviewers. I think that instinct is mostly wrong, or at least badly sequenced. Before you have any business judging a person's behavior, you have to know the machine is what it claims to be. Otherwise you are doing expensive inference on a feed you cannot vouch for.</p>
+
+      <div class="anno">
+      <p>That belief came out of building the Android Chromebook exam client.<a class="ref-anchor" href="#n2"><sup class="ref">2</sup></a> It is Kotlin, it uses Lock Task Mode to pin the device to one app for the duration of a test, and it carries camera and mic over a WebSocket bridge between the native shell and the exam web app. The piece I would defend hardest is the least visible one: Play Integrity attestation, so the backend can verify the device before it releases a single exam question. Nothing about that shows up in a screenshot. It is the difference between a secure exam and a picture of one.</p>
+      <aside class="margin" id="n2">
+        <span class="num">2.</span>
+        <span class="who">Cognizant &middot; Pearson</span>
+        <time datetime="2025">2025 &ndash; 2026 &middot; Software Engineer, contract</time>
+        <ul>
+          <li>Android Chromebook exam client in Kotlin, Lock Task Mode pinning the device for the test.</li>
+          <li>WebSocket media bridge for camera and mic between native shell and exam web app.</li>
+          <li>Play Integrity attestation so the backend verifies the device before an exam is released.</li>
+        </ul>
+      </aside>
+    </div>
+
+      <blockquote><p>Integrity checks belong at the start of the session, not in the review queue afterward. Everything downstream inherits whatever you failed to establish up front.</p></blockquote>
+
+      <p>Lock Task Mode also taught me something about scope. You get a device that will not let the user leave, which sounds like total control until you remember that you now own every failure. There is no browser to fall back to and no home screen to escape into. If your client wedges, a person in a testing room has lost their afternoon and their fee. That shapes how you write code. You stop reaching for clever and start reaching for recoverable.</p>
+    </div>
+
+    <!-- ===================== III ===================== -->
+    <div class="row">
+      <h2>The model is the cheap part</h2>
+
+      <div class="anno">
+      <p class="noindent">Before the client work I spent a year putting models against live exam video.<a class="ref-anchor" href="#n3"><sup class="ref">3</sup></a> Gemini 2.5 Flash on the feed, thirty frames a second, ninety-two percent detection on flagged behaviors. That number is the one people ask about and it is the least interesting thing I built that year.</p>
+      <aside class="margin" id="n3">
+        <span class="num">3.</span>
+        <span class="who">Pearson VUE</span>
+        <time datetime="2024">2024 &ndash; 2025 &middot; Applied AI Engineer, intern</time>
+        <ul>
+          <li>Gemini 2.5 Flash on live exam video, 92% detection on flagged behaviors at 30 FPS.</li>
+          <li>Cache-augmented generation so repeat policy lookups hit stored context, not the model.</li>
+          <li>MCP server and LangGraph assistant giving an LLM real read and write access to scheduling tools.</li>
+        </ul>
+      </aside>
+    </div>
+
+      <p>The interesting part was the plumbing around it. Policy lookups repeat constantly in a system like this, and paying a model to reread the same policy document a thousand times a day is a decision, not a law of nature. So the pipeline uses cache-augmented generation: repeat lookups hit stored context instead of the model. That one change moves the cost curve more than any prompt I have ever written.</p>
+
+      <p>The other piece was an <span class="sc">MCP</span> server and a LangGraph assistant that let a model actually read and write real scheduling tools rather than describe what it would do if it could. This is where I think a lot of applied AI work goes soft. A demo assistant produces convincing text. A useful one takes an action that a human can later audit and reverse. Those are different engineering problems and only the second one has consequences.</p>
+
+      <p>I hold the same line on my own tools. I run a multi-agent Claude workflow for review and refactor passes, which sounds like a productivity claim and is really a discipline claim. Agents are good at surfacing what I stopped noticing in code I wrote last month. They are not good at deciding what the code should be. I keep that boundary sharp because the moment it blurs, you are shipping things nobody read.</p>
+    </div>
+
+    <!-- ===================== IV ===================== -->
+    <div class="row">
+      <h2>Research code deserves better</h2>
+
+      <p class="noindent">My complaint about research code is not that it is messy. It is that the reasoning evaporates. Somebody chooses a normalization, a threshold, a train and test split, and six months later the choice survives in a script while the argument for it does not survive anywhere. The result is work that runs and cannot be defended.</p>
+
+      <div class="anno">
+      <p>Expression Explorer<a class="ref-anchor" href="#n4"><sup class="ref">4</sup></a> is my answer to that. It does gene expression analysis: group comparison, signature scoring, survival analysis. Two decisions in it matter more than the feature list. New disease areas plug in through a shared contract instead of a fork, because forking per disease is how a codebase becomes five codebases that disagree. And every analytical decision is written down where a reader can find it rather than buried in a function body. If a biologist cannot tell what the pipeline assumed, the pipeline has not finished its job.</p>
+      <aside class="margin" id="n4">
+        <span class="num">4.</span>
+        <span class="who">Expression Explorer</span>
+        <span class="when">Gene expression analysis</span>
+        <p>Group comparison, signature scoring, survival analysis. New disease areas plug in through a shared contract rather than a fork.</p>
+        <p><a href="https://expression-explorer.vercel.app">expression-explorer.vercel.app</a></p>
+      </aside>
+    </div>
+
+      <div class="anno">
+      <p>The research I published sits on the same premise. The <span class="sc">EMBC</span> paper<a class="ref-anchor" href="#n5"><sup class="ref">5</sup></a> was about turning spatial representations into adaptive insight for endoscopic polyp diagnosis, and my thesis work<a class="ref-anchor" href="#n6"><sup class="ref">6</sup></a> put domain-expert structure into graph neural networks for methane prediction in anaerobic digestion. The reason to guide a network with expert structure is not accuracy alone. It is that an engineer who already understands digestion can look at the graph and say where it is wrong.</p>
+      <div class="notes">
+        <aside class="margin" id="n5">
+        <span class="num">5.</span>
+        <span class="who">IEEE EMBC 2025</span>
+        <span class="when">Third author &middot; TReNDS Center</span>
+        <p>&ldquo;Dynamic Contextual Attention Network: Transforming Spatial Representations into Adaptive Insights for Endoscopic Polyp Diagnosis.&rdquo; With Cherukuri, Shaik, Chung, Ye.</p>
+        <p><a href="https://doi.org/10.1109/embc58623.2025.11254199">doi.org/10.1109/embc58623.2025.11254199</a></p>
+      </aside>
+        <aside class="margin" id="n6">
+        <span class="num">6.</span>
+        <span class="who">GNN Backbone</span>
+        <span class="when">MS thesis work</span>
+        <p>Domain-expert-guided graph neural networks for methane production prediction in anaerobic digestion.</p>
+        <p><a href="https://github.com/Sribhuvan-25/GNN-Backbone">github.com/Sribhuvan-25/GNN-Backbone</a></p>
+      </aside>
+      </div>
+    </div>
+    </div>
+
+    <!-- ===================== V ===================== -->
+    <div class="row">
+      <h2>What I build when nobody is asking</h2>
+
+      <div class="anno">
+      <p class="noindent">The side projects are not a portfolio. They are where I test opinions I cannot test at work. AutoQuanta<a class="ref-anchor" href="#n7"><sup class="ref">7</sup></a> trains and compares models entirely on your own machine because I do not accept that every experiment needs to leave the building. Code Agent<a class="ref-anchor" href="#n8"><sup class="ref">8</sup></a> runs its own edits inside a Docker sandbox and traces every step in LangSmith, on the theory that an agent you cannot replay is an agent you cannot trust. RoadEye<a class="ref-anchor" href="#n9"><sup class="ref">9</sup></a> does road damage detection on device, and most of the real work there was deduplicating the same pothole across frames, geotagging it, and estimating its actual size. CipherCloud<a class="ref-anchor" href="#n10"><sup class="ref">10</sup></a> is zero-knowledge encrypted storage, which is mainly an exercise in refusing to hold the key.</p>
+      <div class="notes">
+        <aside class="margin" id="n7">
+        <span class="num">7.</span>
+        <span class="who">AutoQuanta</span>
+        <span class="when">Local ML workbench</span>
+        <p>Trains and compares models on your own machine. No cloud.</p>
+        <p><a href="https://github.com/Sribhuvan-25/AutoQuanta">github.com/Sribhuvan-25/AutoQuanta</a></p>
+      </aside>
+        <aside class="margin" id="n8">
+        <span class="num">8.</span>
+        <span class="who">Code Agent</span>
+        <span class="when">LangGraph &middot; Docker &middot; LangSmith</span>
+        <p>Coding agent that runs its own edits in a sandbox, traced so a bad run can be replayed.</p>
+        <p><a href="https://github.com/Sribhuvan-25/code-agent">github.com/Sribhuvan-25/code-agent</a></p>
+      </aside>
+        <aside class="margin" id="n9">
+        <span class="num">9.</span>
+        <span class="who">RoadEye</span>
+        <span class="when">On-device detection</span>
+        <p>Road damage detection that dedupes defects across frames, geotags them, and estimates real size.</p>
+        <p><a href="https://github.com/Sribhuvan-25/RoadEye">github.com/Sribhuvan-25/RoadEye</a></p>
+      </aside>
+        <aside class="margin" id="n10">
+        <span class="num">10.</span>
+        <span class="who">CipherCloud</span>
+        <span class="when">Zero-knowledge storage</span>
+        <p>Encrypted cloud storage where the server never holds a key it could use.</p>
+        <p><a href="https://github.com/Sribhuvan-25/CipherCloud">github.com/Sribhuvan-25/CipherCloud</a></p>
+      </aside>
+      </div>
+    </div>
+
+      <p>There is a pattern and I did not plan it. Each one moves a decision closer to the person affected by it. Training on your own hardware, replaying your own agent, encrypting so the host cannot read you. I did not set out to have a politics about software. Building this much of it gave me one.</p>
+    </div>
+
+    <!-- ===================== VI ===================== -->
+    <div class="row">
+      <h2>How I got here</h2>
+
+      <div class="anno">
+      <p class="noindent">The route was ordinary and I mention it only because the order mattered. Angular and Spring Boot on the exam delivery platform first,<a class="ref-anchor" href="#n11"><sup class="ref">11</sup></a> which is where I learned what a test session actually is before I had any opinions about securing one. Before that, Next.js against GraphQL and REST at <span class="sc">NCR</span>,<a class="ref-anchor" href="#n12"><sup class="ref">12</sup></a> writing Jest tests against endpoints I did not control, which is a better education in defensive engineering than any course I took. A master's and a bachelor's in computer science at Georgia State, the second one summa cum laude.<a class="ref-anchor" href="#n13"><sup class="ref">13</sup></a></p>
+      <div class="notes">
+        <aside class="margin" id="n11">
+        <span class="num">11.</span>
+        <span class="who">Pearson VUE</span>
+        <time datetime="2024">2024 &middot; Software Engineer, intern</time>
+        <p>Angular and Spring Boot on the exam delivery platform.</p>
+      </aside>
+        <aside class="margin" id="n12">
+        <span class="num">12.</span>
+        <span class="who">NCR Corporation</span>
+        <time datetime="2023">2023 &middot; Software Engineer, intern</time>
+        <p>Next.js against GraphQL and REST, with Jest test coverage. Honorable mention, NCR Global Hackathon.</p>
+      </aside>
+        <aside class="margin" id="n13">
+        <span class="num">13.</span>
+        <span class="who">Georgia State University</span>
+        <span class="when">Atlanta, Georgia</span>
+        <ul>
+          <li>MS, Computer Science.</li>
+          <li>BS, Computer Science, summa cum laude.</li>
+        </ul>
+      </aside>
+      </div>
+    </div>
+
+      <p class="breath">&middot; &middot; &middot;</p>
+
+      <p class="noindent">What ties it together is a preference I will state plainly. I would rather understand one system all the way down than touch twenty at the surface. Depth is not a personality trait here, it is a bet about where the failures are. The failures are never in the part you can see on a slide. They are in the bridge, in the attestation, in the assumption nobody wrote down. That is the work I want.</p>
+    </div>
+
+    <!-- ===================== WRITING ===================== -->
+    <div class="row">
+      <h2>Notes in progress</h2>
+
+      <p class="noindent">Longer arguments I am still drafting, pulled out of the work above.</p>
+
+      <div class="anno">
+      <ul class="register">
+        <li>
+          <span class="t">Cache-Augmented Generation Beats a Better Prompt</span>
+          <span class="m">Draft</span>
+          <span class="d">What changed when repeat policy lookups stopped reaching the model, and how to tell which of your calls are actually repeats.</span>
+        </li>
+        <li>
+          <span class="t">Lock Task Mode Means You Own Every Failure</span>
+          <span class="m">Draft</span>
+          <span class="d">Pinning a Chromebook to one app removes the user's escape hatch. Notes on what that obligates you to handle.</span>
+        </li>
+      </ul>
+      <aside class="margin">
+        <span class="margin-label">Colophon</span>
+        <p>Set in Spectral with IBM Plex Mono in the margin. Old-style figures throughout. No tracking, no analytics, one page.</p>
+      </aside>
+    </div>
+    </div>
+
+  </article>
+  </main>
+
+  <footer class="imprint">
+    <div class="lines">
+      <span><a href="mailto:sribhuvan.y@gmail.com">sribhuvan.y@gmail.com</a></span>
+      <span><a href="https://github.com/Sribhuvan-25">github.com/Sribhuvan-25</a></span>
+      <span><a href="https://linkedin.com/in/sribhuvanyellu">linkedin.com/in/sribhuvanyellu</a></span>
+      <span>Atlanta, GA</span>
+    </div>
+    <p class="set">Sribhuvan Yellu &middot; Software Engineer II at Pearson &middot; Open to conversations about proctoring integrity, applied AI systems, and research tooling.</p>
+  </footer>
+
+</div>
+</div>
+</body>
+</html>
