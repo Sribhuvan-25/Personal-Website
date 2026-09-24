@@ -110,7 +110,7 @@ h1 {
   font-weight: 600;
   letter-spacing: -0.022em;
   line-height: 1.05;
-  margin: 0 0 1.1rem;
+  margin: 0;
 }
 
 .head__role {
@@ -118,33 +118,6 @@ h1 {
   font-size: 0.8125rem;
   color: var(--accent);
   margin: 0 0 1.75rem;
-}
-
-.head__note {
-  font-size: 1.0625rem;
-  line-height: 1.7;
-  color: var(--ink-dim);
-  margin: 0 0 2rem;
-  max-width: 34rem;
-}
-
-.head__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem 1.5rem;
-  margin: 0;
-  font-family: var(--mono);
-  font-size: 0.8125rem;
-}
-
-.head__links a {
-  color: var(--ink-dim);
-  border-bottom-color: transparent;
-}
-
-.head__links a:hover {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
 }
 
 /* ---------- section headings ---------- */
@@ -267,17 +240,23 @@ h1 {
 
 .foot {
   display: flex;
-  justify-content: space-between;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.75rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: 0.8125rem;
 }
 
-.foot p {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  color: var(--ink-faint);
-  margin: 0;
+.foot a {
+  color: var(--ink-dim);
+  border-bottom-color: transparent;
+}
+
+.foot a:hover,
+.foot a:focus-visible {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
 }
 
 /* ---------- narrow ---------- */
@@ -481,13 +460,4 @@ h1 {
   border: 0;
   border-top: 1px solid var(--rule);
   margin: 2.5rem 0;
-}
-
-.foot a {
-  color: var(--ink-faint);
-  border-bottom-color: transparent;
-}
-
-.foot a:hover {
-  color: var(--accent);
 }
