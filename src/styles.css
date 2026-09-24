@@ -180,6 +180,10 @@ h1 {
   color: var(--ink-dim);
 }
 
+.role__sub {
+  color: var(--ink-faint);
+}
+
 .role__when {
   grid-column: 3;
   grid-row: 1 / span 2;
