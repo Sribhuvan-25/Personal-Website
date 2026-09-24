@@ -377,8 +377,18 @@ a:focus-visible {
   margin-bottom: 1.1rem;
 }
 
+/* The eyebrow already names this section; keep the heading for the
+   document outline and screen readers, but let the email carry the page. */
 .contact__line {
-  margin-bottom: 2rem;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .contact__email a {
