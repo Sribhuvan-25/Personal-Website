@@ -151,9 +151,10 @@ a:focus-visible {
 
 .nav__mark {
   display: inline-flex;
-  color: var(--accent-ink);
+  color: var(--accent);
   background-image: none;
-  transition: color 0.25s ease, transform 0.4s ease;
+  border-radius: 8px;
+  transition: color 0.25s ease;
 }
 
 .nav__mark svg {
@@ -164,17 +165,7 @@ a:focus-visible {
 
 .nav__mark:hover,
 .nav__mark:focus-visible {
-  color: var(--accent);
-  transform: rotate(45deg);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .nav__mark,
-  .nav__mark:hover,
-  .nav__mark:focus-visible {
-    transform: none;
-    transition: none;
-  }
+  color: var(--accent-ink);
 }
 
 .nav__links {
