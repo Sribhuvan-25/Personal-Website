@@ -125,7 +125,7 @@ h1 {
   line-height: 1.7;
   color: var(--ink-dim);
   margin: 0 0 2rem;
-  max-width: 36rem;
+  max-width: 34rem;
 }
 
 .head__links {
@@ -164,12 +164,12 @@ h1 {
   text-transform: uppercase;
   letter-spacing: 0.16em;
   color: var(--ink-faint);
-  margin: 0 0 2rem;
+  margin: 0 0 0.25rem;
   padding-bottom: 0.9rem;
   border-bottom: 1px solid var(--rule);
 }
 
-/* ---------- experience ---------- */
+/* ---------- experience: logo, title, company ---------- */
 
 .roles {
   list-style: none;
@@ -179,52 +179,49 @@ h1 {
 
 .role {
   display: grid;
-  grid-template-columns: 8.5rem minmax(0, 1fr);
-  gap: 0 2rem;
-  padding-bottom: 2.75rem;
+  grid-template-columns: 26px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.1rem 1.1rem;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid var(--rule);
 }
 
-.role:last-child {
-  padding-bottom: 0;
-}
-
-.role__when {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  line-height: 1.9;
-  color: var(--ink-faint);
-  margin: 0;
-  padding-top: 0.2rem;
-  white-space: nowrap;
+.role__logo {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
 }
 
 .role__title {
-  font-size: 1rem;
+  grid-column: 2;
+  font-size: 0.9375rem;
   font-weight: 600;
   line-height: 1.4;
-  margin: 0;
 }
 
 .role__org {
-  font-size: 0.875rem;
-  color: var(--accent);
-  margin: 0.15rem 0 0.7rem;
-}
-
-.role__what {
-  font-size: 0.9375rem;
-  line-height: 1.7;
+  grid-column: 2;
+  font-size: 0.8125rem;
   color: var(--ink-dim);
-  margin: 0;
 }
 
-/* ---------- projects ---------- */
+.role__when {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+/* ---------- currently building ---------- */
 
 .work {
   list-style: none;
   margin: 0;
   padding: 0;
-  border-top: 1px solid var(--rule);
 }
 
 .item {
@@ -233,19 +230,15 @@ h1 {
 
 .item__link {
   display: block;
-  padding: 1.5rem 0;
+  padding: 1.15rem 0;
   border-bottom: 0;
 }
 
-.item__link:hover,
-.item__link:focus-visible {
-  color: inherit;
-}
-
 .item__name {
-  font-size: 1rem;
+  display: block;
+  font-size: 0.9375rem;
   font-weight: 600;
-  margin: 0 0 0.45rem;
+  margin-bottom: 0.3rem;
   transition: color 0.15s ease;
 }
 
@@ -255,32 +248,11 @@ h1 {
 }
 
 .item__what {
-  font-size: 0.9375rem;
-  line-height: 1.7;
-  color: var(--ink-dim);
-  margin: 0 0 0.6rem;
-  max-width: 38rem;
-}
-
-.item__meta {
-  font-family: var(--mono);
-  font-size: 0.6875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.13em;
-  color: var(--ink-faint);
-  margin: 0;
-}
-
-.aside {
+  display: block;
   font-size: 0.875rem;
-  line-height: 1.75;
-  color: var(--ink-faint);
-  margin: 2rem 0 0;
-  max-width: 38rem;
-}
-
-.aside a {
+  line-height: 1.65;
   color: var(--ink-dim);
+  max-width: 38rem;
 }
 
 /* ---------- writing ---------- */
@@ -324,13 +296,13 @@ h1 {
   }
 
   .role {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0;
+    grid-template-columns: 26px minmax(0, 1fr);
   }
 
   .role__when {
-    padding-top: 0;
-    margin-bottom: 0.4rem;
+    grid-column: 2;
+    grid-row: auto;
+    margin-top: 0.3rem;
   }
 }
 

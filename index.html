@@ -45,10 +45,8 @@
         <!-- Name -->
         <header class="head">
           <h1>Sribhuvan Yellu</h1>
-          <p class="head__role">Software Engineer II at Pearson. Atlanta, Georgia.</p>
           <p class="head__note">
-            I work at the seam where native code meets the web layer. Most of what I build runs
-            where failure is loud, so I treat the boundary as the product rather than as plumbing.
+            I would rather ship something small that holds than something broad that almost works.
           </p>
           <p class="head__links">
             <a href="mailto:sribhuvan.y@gmail.com">sribhuvan.y@gmail.com</a>
@@ -63,152 +61,57 @@
 
           <ol class="roles">
             <li class="role">
-              <p class="role__when"><time datetime="2026-08">2026</time> &ndash; Present</p>
-              <div class="role__body">
-                <h3 class="role__title">Software Engineer II</h3>
-                <p class="role__org">Pearson</p>
-                <p class="role__what">
-                  Moving the OnVUE proctoring client onto a shared-UI codebase so Windows and macOS
-                  ship from one source tree instead of two that drift apart. I write the camera and
-                  microphone bridges between native platform code and the web layer, which is where
-                  BrowserLock either keeps its grip on the exam session or quietly loses it.
-                </p>
-              </div>
+              <img class="role__logo" src="/logos/pearson.svg" alt="Pearson logo" width="26" height="26" loading="lazy" />
+              <span class="role__title">Software Engineer II</span>
+              <span class="role__org">Pearson</span>
+              <span class="role__when"><time datetime="2026-08">2026</time>&ndash;Present</span>
             </li>
-
             <li class="role">
-              <p class="role__when"><time datetime="2025-12">2025</time> &ndash; <time datetime="2026-08">2026</time></p>
-              <div class="role__body">
-                <h3 class="role__title">Software Engineer, contract</h3>
-                <p class="role__org">Cognizant for Pearson</p>
-                <p class="role__what">
-                  Built the Android Chromebook exam client in Kotlin. Lock Task Mode pins the device
-                  for the length of the test, so the app owns failure modes the operating system
-                  usually handles. Play Integrity attestation runs before delivery, because anything
-                  a client asserts about itself is a claim and not a fact.
-                </p>
-              </div>
+              <img class="role__logo" src="/logos/cognizant.svg" alt="Cognizant logo" width="26" height="26" loading="lazy" />
+              <span class="role__title">Software Engineer, contract</span>
+              <span class="role__org">Cognizant for Pearson</span>
+              <span class="role__when"><time datetime="2025-12">2025</time>&ndash;<time datetime="2026-08">2026</time></span>
             </li>
-
             <li class="role">
-              <p class="role__when"><time datetime="2024-11">2024</time> &ndash; <time datetime="2025-08">2025</time></p>
-              <div class="role__body">
-                <h3 class="role__title">Applied AI Engineer, intern</h3>
-                <p class="role__org">Pearson VUE</p>
-                <p class="role__what">
-                  Put Gemini 2.5 Flash on live exam video and reached 92% detection on flagged
-                  behavior at 30 FPS. Real time was the requirement, so the frame budget picked the
-                  model rather than the other way around. Also wrote an MCP server and a LangGraph
-                  assistant so a model could read and write real scheduling tools.
-                </p>
-              </div>
+              <img class="role__logo" src="/logos/pearson.svg" alt="Pearson VUE logo" width="26" height="26" loading="lazy" />
+              <span class="role__title">Applied AI Engineer, intern</span>
+              <span class="role__org">Pearson VUE</span>
+              <span class="role__when"><time datetime="2024-11">2024</time>&ndash;<time datetime="2025-08">2025</time></span>
             </li>
-
             <li class="role">
-              <p class="role__when"><time datetime="2024-05">2024</time></p>
-              <div class="role__body">
-                <h3 class="role__title">Software Engineer, intern</h3>
-                <p class="role__org">Pearson VUE</p>
-                <p class="role__what">
-                  Angular front end and Spring Boot services on the exam delivery platform.
-                </p>
-              </div>
+              <img class="role__logo" src="/logos/pearson.svg" alt="Pearson VUE logo" width="26" height="26" loading="lazy" />
+              <span class="role__title">Software Engineer, intern</span>
+              <span class="role__org">Pearson VUE</span>
+              <span class="role__when"><time datetime="2024-05">2024</time></span>
             </li>
-
             <li class="role">
-              <p class="role__when"><time datetime="2023-05">Summer 2023</time></p>
-              <div class="role__body">
-                <h3 class="role__title">Software Engineer, intern</h3>
-                <p class="role__org">NCR Corporation</p>
-                <p class="role__what">
-                  Next.js front end against GraphQL and REST services, covered with Jest. Honorable
-                  mention at the NCR Global Hackathon.
-                </p>
-              </div>
+              <img class="role__logo" src="/logos/ncr.svg" alt="NCR logo" width="26" height="26" loading="lazy" />
+              <span class="role__title">Software Engineer, intern</span>
+              <span class="role__org">NCR Corporation</span>
+              <span class="role__when"><time datetime="2023-05">2023</time></span>
             </li>
           </ol>
         </section>
 
         <!-- Projects -->
         <section class="block" aria-labelledby="projects">
-          <h2 class="block__title" id="projects">Recent projects</h2>
+          <h2 class="block__title" id="projects">Currently building</h2>
 
           <ul class="work">
             <li class="item">
               <a class="item__link" href="https://expression-explorer.vercel.app" rel="noopener">
-                <h3 class="item__name">Expression Explorer</h3>
-                <p class="item__what">
-                  Gene expression analysis end to end: group comparison, signature scoring, survival.
-                  New disease areas plug in through a shared contract instead of a fork, and every
-                  analytical decision is written down rather than buried in the code.
-                </p>
-                <p class="item__meta">Live site</p>
+                <span class="item__name">Expression Explorer</span>
+                <span class="item__what">A gene expression analysis platform where new disease areas plug in instead of forking.</span>
               </a>
             </li>
 
             <li class="item">
               <a class="item__link" href="https://github.com/Sribhuvan-25/RoadEye" rel="noopener">
-                <h3 class="item__name">RoadEye</h3>
-                <p class="item__what">
-                  On-device road damage detection. It dedupes the same defect across frames, geotags
-                  it, and estimates real-world size. The hard part was never detection, it was not
-                  counting one pothole nine times.
-                </p>
-                <p class="item__meta">Swift</p>
-              </a>
-            </li>
-
-            <li class="item">
-              <a class="item__link" href="https://github.com/Sribhuvan-25/AutoQuanta" rel="noopener">
-                <h3 class="item__name">AutoQuanta</h3>
-                <p class="item__what">
-                  A machine learning workbench that runs on your own machine. It trains and compares
-                  models locally, so the data never leaves the laptop it was collected on.
-                </p>
-                <p class="item__meta">TypeScript</p>
-              </a>
-            </li>
-
-            <li class="item">
-              <a class="item__link" href="https://github.com/Sribhuvan-25/code-agent" rel="noopener">
-                <h3 class="item__name">Code Agent</h3>
-                <p class="item__what">
-                  A LangGraph coding agent that runs its own edits inside a Docker sandbox and traces
-                  every step in LangSmith. An agent without a trace is not debuggable, it is folklore.
-                </p>
-                <p class="item__meta">Python</p>
-              </a>
-            </li>
-
-            <li class="item">
-              <a class="item__link" href="https://github.com/Sribhuvan-25/GNN-Backbone" rel="noopener">
-                <h3 class="item__name">Domain-Expert-Guided GNNs</h3>
-                <p class="item__what">
-                  Graph neural networks predicting methane production in anaerobic digestion, where
-                  domain knowledge shapes the graph instead of sitting beside it. This was my
-                  master's thesis work.
-                </p>
-                <p class="item__meta">PyTorch Geometric</p>
-              </a>
-            </li>
-
-            <li class="item">
-              <a class="item__link" href="https://github.com/Sribhuvan-25/CipherCloud" rel="noopener">
-                <h3 class="item__name">CipherCloud</h3>
-                <p class="item__what">
-                  Zero-knowledge encrypted cloud storage. The server stores bytes it cannot read,
-                  which makes recovery a design problem rather than a support ticket.
-                </p>
-                <p class="item__meta">Python</p>
+                <span class="item__name">RoadEye</span>
+                <span class="item__what">On-device road damage detection that geotags each defect and estimates its real size.</span>
               </a>
             </li>
           </ul>
-
-          <p class="aside">
-            One paper, <a href="https://doi.org/10.1109/embc58623.2025.11254199" rel="noopener">Dynamic
-            Contextual Attention Network</a> for endoscopic polyp diagnosis, IEEE EMBC 2025, written
-            at the TReNDS Center. MS and BS in computer science from Georgia State.
-          </p>
         </section>
 
         <!-- Writing -->
