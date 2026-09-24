@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
+// Static single page — no framework (spec §6).
 export default defineConfig({
-  plugins: [react()],
+  build: { target: 'es2018' },
 })

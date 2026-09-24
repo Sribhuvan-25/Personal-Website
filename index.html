@@ -2,12 +2,284 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./src/assets/nameLogo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Personal-Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Sribhuvan Reddy Yellu — Software Engineer</title>
+    <meta
+      name="description"
+      content="Software Engineer II at Pearson working on the OnVUE proctoring client, with applied AI work on Gemini, LangGraph and MCP."
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sribhuvan Reddy Yellu — Software Engineer" />
+    <meta
+      property="og:description"
+      content="I build secure exam software and applied AI systems."
+    />
+    <meta property="og:url" content="https://sribhuvanreddyyellu.com/" />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href="https://sribhuvanreddyyellu.com/" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles.css" />
   </head>
+
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <!-- Paper grain overlay -->
+    <svg class="grain" aria-hidden="true" focusable="false">
+      <filter id="grain-filter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#grain-filter)" />
+    </svg>
+
+    <div class="shell">
+      <header class="nav">
+        <a class="nav__mark" href="#top">S. Yellu</a>
+        <nav class="nav__links" aria-label="Sections">
+          <a href="#experience">Work</a>
+          <a href="#research">Research</a>
+          <a href="#work">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <main id="top">
+        <!-- Hero -->
+        <section class="hero reveal">
+          <p class="eyebrow">Software Engineer — Atlanta, GA</p>
+          <h1>Sribhuvan Reddy Yellu</h1>
+          <p class="hero__sub">I build secure exam software and applied AI systems.</p>
+          <p class="hero__bio">
+            I’m a Software Engineer II at Pearson, where I work on the OnVUE proctoring client — the
+            software that keeps online exams secure for millions of test-takers. Before that, I
+            spent a year as an Applied AI Engineer intern, putting Gemini on live exam video feeds
+            and wiring LLMs into real scheduling tools. I like work that ships.
+          </p>
+          <p class="hero__links">
+            <a href="mailto:sribhuvan.yellu@gmail.com">Email</a>
+            <span class="dot" aria-hidden="true">·</span>
+            <a href="https://github.com/Sribhuvan-25" rel="me noopener">GitHub</a>
+            <span class="dot" aria-hidden="true">·</span>
+            <a href="https://www.linkedin.com/in/sribhuvanyellu/" rel="me noopener">LinkedIn</a>
+          </p>
+        </section>
+
+        <hr class="rule" />
+
+        <!-- 01 Now -->
+        <section class="section reveal" id="now">
+          <p class="eyebrow">01 · Now</p>
+          <h2>Now</h2>
+          <p>
+            Currently migrating the OnVUE Electron client to a shared-UI codebase for Windows and
+            macOS, building camera and microphone bridges between native code and the web, and
+            running a Claude multi-agent workflow that keeps the team shipping.
+          </p>
+        </section>
+
+        <hr class="rule" />
+
+        <!-- 02 Experience -->
+        <section class="section reveal" id="experience">
+          <p class="eyebrow">02 · Experience</p>
+          <h2>Experience</h2>
+
+          <article class="entry">
+            <p class="entry__date"><time datetime="2026-08">Aug 2026</time> – Present</p>
+            <h3 class="entry__title">Software Engineer II</h3>
+            <p class="entry__meta">Pearson — Hoboken, NJ</p>
+            <ul>
+              <li>
+                Migrating the OnVUE Electron proctoring client to a shared-UI codebase that ships to
+                both Windows and macOS from one source tree.
+              </li>
+              <li>
+                Building camera and microphone bridges between native platform code and the web
+                layer so BrowserLock keeps its grip on the exam session.
+              </li>
+              <li>
+                Running a Claude multi-agent workflow the team uses for review and refactor passes
+                on the client.
+              </li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <p class="entry__date"><time datetime="2025-12">Dec 2025</time> – <time datetime="2026-08">Aug 2026</time></p>
+            <h3 class="entry__title">Software Engineer (contract)</h3>
+            <p class="entry__meta">Cognizant / Pearson — Teaneck, NJ</p>
+            <ul>
+              <li>
+                Built the Android Chromebook exam client in Kotlin, using Lock Task Mode to pin the
+                device for the duration of a test.
+              </li>
+              <li>
+                Wrote a WebSocket media bridge carrying camera and microphone streams between the
+                native shell and the exam web app.
+              </li>
+              <li>
+                Integrated Play Integrity attestation so the backend can verify the device before an
+                exam is released.
+              </li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <p class="entry__date"><time datetime="2024-11">Nov 2024</time> – <time datetime="2025-08">Aug 2025</time></p>
+            <h3 class="entry__title">Applied AI Engineer Intern</h3>
+            <p class="entry__meta">Pearson VUE — Bloomington, MN</p>
+            <ul>
+              <li>
+                Put Gemini 2.5 Flash on live exam video feeds, reaching 92% detection on flagged
+                behaviors at 30 FPS.
+              </li>
+              <li>
+                Built a cache-augmented generation pipeline so repeat policy lookups hit stored
+                context instead of the model.
+              </li>
+              <li>
+                Wrote an MCP server and a LangGraph assistant that let an LLM read and write real
+                scheduling tools.
+              </li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <p class="entry__date"><time datetime="2024-05">May 2024</time> – <time datetime="2024-11">Nov 2024</time></p>
+            <h3 class="entry__title">Software Engineer Intern</h3>
+            <p class="entry__meta">Pearson VUE — Bloomington, MN</p>
+            <ul>
+              <li>
+                Shipped features across an Angular front end and Spring Boot services on the exam
+                delivery platform.
+              </li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <p class="entry__date"><time datetime="2023-05">May 2023</time> – <time datetime="2023-08">Aug 2023</time></p>
+            <h3 class="entry__title">Software Engineer Intern</h3>
+            <p class="entry__meta">NCR Corporation — Atlanta, GA</p>
+            <ul>
+              <li>Built Next.js interfaces against GraphQL and REST services.</li>
+              <li>Covered the work with Jest tests before handoff.</li>
+              <li>Honorable mention, NCR Global Hackathon.</li>
+            </ul>
+          </article>
+
+          <p class="skills">
+            Python · TypeScript · Kotlin · Java · SQL · PyTorch · LangGraph · MCP · RAG · Docker ·
+            TeamCity · Azure
+          </p>
+        </section>
+
+        <hr class="rule" />
+
+        <!-- 03 Selected work -->
+        <section class="section reveal" id="work">
+          <p class="eyebrow">03 · Selected work</p>
+          <h2>Selected <em>work</em></h2>
+
+          <article class="card">
+            <p class="entry__date">Featured</p>
+            <h3 class="entry__title">
+              <a href="https://github.com/Sribhuvan-25/code-agent" rel="noopener">Code Agent</a>
+            </h3>
+            <p class="entry__meta">LangGraph · Docker · LangSmith</p>
+            <p>
+              A coding agent built on LangGraph that plans an edit, runs it inside a Docker sandbox,
+              and reads back the result before it commits to the next step. Traced end to end in
+              LangSmith, so a run that goes wrong can be replayed rather than guessed at.
+            </p>
+          </article>
+
+          <article class="entry">
+            <h3 class="entry__title">
+              <a href="https://github.com/Sribhuvan-25/GNN-Backbone" rel="noopener">Knowledge-Guided GNNs</a>
+            </h3>
+            <p class="entry__meta">PyTorch Geometric</p>
+            <ul>
+              <li>
+                Graph neural networks for anaerobic digestion, where domain knowledge shapes the
+                graph rather than sitting beside it. R² 0.91 on the held-out set.
+              </li>
+            </ul>
+          </article>
+        </section>
+
+        <hr class="rule" />
+
+        <!-- 04 Research -->
+        <section class="section reveal" id="research">
+          <p class="eyebrow">04 · Research</p>
+          <h2>Research</h2>
+
+          <article class="entry">
+            <p class="entry__date"><time datetime="2025">2025</time></p>
+            <h3 class="entry__title">Dynamic Contextual Attention Network for Endoscopic Polyp Diagnosis</h3>
+            <p class="entry__meta">IEEE EMBC 2025 — accepted</p>
+            <ul>
+              <li>
+                Co-authored at the TReNDS Center. An attention network that reads endoscopic frames
+                in context instead of one at a time.
+              </li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <h3 class="entry__title">MS thesis — Explainable AI across imaging and graph modalities</h3>
+            <p class="entry__meta">Georgia State University</p>
+            <ul>
+              <li>
+                Why a model reached its answer, tested on the same question in two very different
+                data shapes.
+              </li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <h3 class="entry__title">Education</h3>
+            <p class="entry__meta">Georgia State University — Atlanta, GA</p>
+            <ul>
+              <li>MS, Computer Science — thesis track.</li>
+              <li>BS, Computer Science — Summa Cum Laude.</li>
+            </ul>
+          </article>
+        </section>
+
+        <hr class="rule" />
+
+        <!-- 05 Contact -->
+        <section class="section reveal" id="contact">
+          <p class="eyebrow">05 · Contact</p>
+          <h2 class="contact__line">Let’s build something <em>useful</em>.</h2>
+          <p class="contact__email">
+            <a href="mailto:sribhuvan.yellu@gmail.com">sribhuvan.yellu@gmail.com</a>
+          </p>
+          <p class="contact__links">
+            <a href="https://github.com/Sribhuvan-25" rel="me noopener">GitHub</a>
+            <span class="dot" aria-hidden="true">·</span>
+            <a href="https://www.linkedin.com/in/sribhuvanyellu/" rel="me noopener">LinkedIn</a>
+          </p>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <hr class="rule" />
+        <p>© 2026 Sribhuvan Reddy Yellu · Built with calm intent</p>
+        <p>Last updated Sep 2026</p>
+      </footer>
+    </div>
+
+    <script src="/src/reveal.js" type="module"></script>
   </body>
 </html>

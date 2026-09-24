@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 .vercel
 blog-config.env
+.claude/launch.json
