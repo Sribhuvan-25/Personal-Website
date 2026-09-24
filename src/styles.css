@@ -143,29 +143,53 @@ a:focus-visible {
 .nav {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 0.75rem 1.5rem;
   margin-bottom: 5rem;
 }
 
+/* Logo mark (spec §1: Logo).
+   Rendered from the vector master; never recolored, rotated or shadowed.
+   Clearspace: >= 25% of the mark's width on all sides. */
 .nav__mark {
   display: inline-flex;
-  color: var(--accent);
+  padding: 8px;
+  margin: -8px;
   background-image: none;
-  border-radius: 8px;
-  transition: color 0.25s ease;
+  border-radius: 10px;
 }
 
-.nav__mark svg {
-  width: 30px;
-  height: 30px;
+.nav__mark img {
+  width: 32px;
+  height: 32px;
   display: block;
 }
 
-.nav__mark:hover,
-.nav__mark:focus-visible {
-  color: var(--accent-ink);
+@media (max-width: 720px) {
+  .nav__mark img {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.footer__mark {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.footer__mark img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.footer__mark span {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  color: var(--ink);
 }
 
 .nav__links {
