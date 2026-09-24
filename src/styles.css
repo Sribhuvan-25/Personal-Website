@@ -498,3 +498,168 @@ a:focus-visible {
     font-size: 1.2rem;
   }
 }
+
+/* ---------- Writing ---------- */
+
+.writing__title,
+.post__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0 0 1.5rem;
+}
+
+.post .eyebrow a {
+  color: var(--accent-ink);
+}
+
+.post__date {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: -0.75rem 0 2.5rem;
+}
+
+.post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.25rem 1.5rem;
+  align-items: baseline;
+  padding: 1.35rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.post-item:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.post-item__link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  background-image: none;
+}
+
+.post-item__title {
+  font-weight: 500;
+  color: var(--ink);
+  transition: color 0.25s ease;
+}
+
+.post-item__link:hover .post-item__title,
+.post-item__link:focus-visible .post-item__title {
+  color: var(--accent-ink);
+}
+
+.post-item__summary {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.post-item__date {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* Post body */
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-family: var(--font-display);
+  font-weight: 450;
+  line-height: 1.25;
+  margin: 2.75rem 0 1rem;
+}
+
+.prose h2 { font-size: 1.5rem; }
+.prose h3 { font-size: 1.2rem; }
+.prose h4 { font-size: 1.05rem; }
+
+.prose p {
+  margin: 0 0 1.25rem;
+}
+
+.prose ul,
+.prose ol {
+  margin: 0 0 1.25rem;
+  padding-left: 1.3rem;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+}
+
+.prose a {
+  color: var(--accent-ink);
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.prose blockquote {
+  margin: 1.75rem 0;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--accent);
+  color: var(--muted);
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  background: var(--accent-wash);
+  padding: 0.12em 0.3em;
+  border-radius: 4px;
+  /* Pull the tint in slightly so it does not look detached from
+     the punctuation that follows a code span. */
+  margin: 0 -0.02em;
+}
+
+.prose pre {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.1rem 1.25rem;
+  overflow-x: auto;
+  margin: 0 0 1.5rem;
+}
+
+.prose pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.84rem;
+  line-height: 1.7;
+}
+
+.prose hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 2.5rem 0;
+}
+
+@media (max-width: 620px) {
+  .post-item {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .post-item__date {
+    grid-column: 1;
+  }
+}
