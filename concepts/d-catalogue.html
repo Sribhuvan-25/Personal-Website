@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sribhuvan Yellu — Catalogue of Work</title>
+<title>Sribhuvan Yellu / Catalogue of Work</title>
 <meta name="description" content="A classified catalogue of software, research and systems built by Sribhuvan Yellu, software engineer in Atlanta, GA.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -235,26 +235,33 @@ a{ color:inherit; }
    ============================================================ */
 .entry{
   border-bottom:var(--hair);
-  padding:26px 0 30px;
+  padding:24px 0 34px;
 }
 .entry:last-child{ border-bottom:0; }
 
+/* Column 1 carries the accession number. Its rule sits on the same
+   line as the specification rule in column 9 so the grid reads across
+   the whole spread. */
 .e-num{
   grid-column:1 / span 2;
+  border-top:2px solid var(--signal);
+  padding-top:8px;
+  margin-top:-1px;
 }
+/* An accession number never breaks. It is one token. */
 .e-num .cat{
   font-family:var(--mono);
   font-size:12px;
-  letter-spacing:.06em;
+  letter-spacing:.04em;
   font-weight:600;
   color:var(--ink);
   display:block;
+  white-space:nowrap;
+  overflow-wrap:normal;
 }
 .e-num .cls{
   display:block;
-  margin-top:7px;
-  padding-top:7px;
-  border-top:2px solid var(--signal);
+  margin-top:6px;
   font-family:var(--mono);
   font-size:10px;
   letter-spacing:.14em;
@@ -262,7 +269,14 @@ a{ color:inherit; }
   color:var(--ink-2);
 }
 
-.e-body{ grid-column:3 / span 6; }
+/* The body column picks up the same rule line at a lighter weight, so
+   one continuous line crosses all twelve columns at every entry top. */
+.e-body{
+  grid-column:3 / span 6;
+  border-top:var(--hair);
+  padding-top:14px;
+  margin-top:-1px;
+}
 
 .e-title{
   margin:0 0 4px;
@@ -345,6 +359,17 @@ a{ color:inherit; }
 }
 .spec a{ text-decoration:none; border-bottom:1px solid var(--rule); }
 .spec a:hover{ color:var(--signal); border-bottom-color:var(--signal); }
+
+/* End-of-record mark. Closes the spec column so a short entry does not
+   just trail off into the gutter. */
+.e-spec::after{
+  content:"";
+  display:block;
+  width:18px;
+  height:3px;
+  background:var(--ink);
+  margin-top:11px;
+}
 
 /* Plate: a small figure-mark block for the specimen */
 .plate{
@@ -509,25 +534,33 @@ a{ color:inherit; }
 /* 1024 and below: spec block drops under body, still 12 cols */
 @media (max-width: 1080px){
   :root{ --pad:22px; --gut:16px; }
-  .e-body{ grid-column:3 / span 10; }
-  .e-spec{ grid-column:3 / span 10; margin-top:18px; }
+  /* Column 1 widens to three so the accession number never breaks. */
+  .e-num, .row .r-num{ grid-column:1 / span 3; }
+  .e-body{ grid-column:4 / span 9; }
+  .e-spec{ grid-column:4 / span 9; margin-top:18px; }
   .spec > div{ grid-template-columns:minmax(0,90px) minmax(0,1fr); }
   .mast-statement{ grid-column:1 / span 12; }
   .mast-meta{ grid-column:1 / span 12; margin-top:16px; }
   .mast-a{ grid-column:1 / span 6; }
   .mast-b{ grid-column:7 / span 6; }
   .mast-c{ grid-column:1 / span 12; margin-top:5px; }
-  .tenet p{ grid-column:3 / span 10; margin-top:10px; }
-  .row .r-main{ grid-column:3 / span 10; }
+  .tenet .t-num{ grid-column:1 / span 3; }
+  .tenet h3{ grid-column:4 / span 9; }
+  .tenet p{ grid-column:4 / span 9; margin-top:10px; }
+  .row .r-main{ grid-column:4 / span 9; }
   .row .r-side{
-    grid-column:3 / span 10;
+    grid-column:4 / span 9;
     margin-top:12px;
     border-top:var(--hair);
     padding-top:8px;
   }
-  .imp-b{ grid-column:3 / span 10; }
-  .imp-c{ grid-column:3 / span 10; margin-top:20px; }
-  .sec-name{ grid-column:3 / span 5; }
+  .imp-a{ grid-column:1 / span 3; }
+  .imp-b{ grid-column:4 / span 9; }
+  .imp-c{ grid-column:4 / span 9; margin-top:20px; }
+  .sec-cls{ grid-column:1 / span 3; }
+  .sec-name{ grid-column:4 / span 7; }
+  .sec-count{ grid-column:11 / span 2; }
+  .sec-head{ padding:10px 0 9px; }
   .mast-specimen .mast-title{ grid-column:1 / span 12; }
   .mast-annot{
     grid-column:1 / span 12;
@@ -556,15 +589,14 @@ a{ color:inherit; }
   .sec-count{ text-align:left; }
 
   .e-num{
-    display:flex; align-items:baseline; gap:12px;
-    margin-bottom:12px;
-    padding-bottom:7px;
-    border-bottom:2px solid var(--signal);
+    display:flex; align-items:baseline; gap:6px 14px;
+    flex-wrap:wrap;
+    margin-bottom:13px;
+    padding-top:8px;
+    border-top:2px solid var(--signal);
   }
   .e-num .cat{ flex:0 0 auto; }
-  .e-num .cls{
-    margin-top:0; padding-top:0; border-top:0;
-  }
+  .e-num .cls{ margin-top:0; }
   .e-spec{ margin-top:16px; }
   .tenet .t-num{ margin-bottom:6px; }
   .tenet p{ margin-top:10px; }
@@ -574,6 +606,11 @@ a{ color:inherit; }
   .imp-c{ margin-top:18px; }
   .kv dt{ flex:0 0 84px; }
   .mast-title{ padding:16px 0 12px; }
+
+  /* Column-header scaffolding is meaningless once the columns stack. */
+  .mast-row.heads{ display:none; }
+  .mast-a, .mast-b, .mast-c{ margin-top:0; }
+  .mast-row.idents{ display:flex; flex-direction:column; gap:5px; }
 }
 
 @media (max-width: 380px){
@@ -613,7 +650,7 @@ a{ color:inherit; }
 <header class="masthead">
   <div class="sheet">
 
-    <div class="mast-row grid">
+    <div class="mast-row heads grid">
       <div class="mast-a"><span class="lbl">Compiled and classified by</span></div>
       <div class="mast-b"><span class="lbl">Subject</span></div>
       <div class="mast-c"><span class="lbl">Holdings</span></div>
@@ -628,7 +665,7 @@ a{ color:inherit; }
       </div>
     </div>
 
-    <div class="mast-row grid">
+    <div class="mast-row idents grid">
       <div class="mast-a"><span class="lbl lbl-ink">Software Engineer II, Pearson</span></div>
       <div class="mast-b"><span class="lbl lbl-ink">Secure exam delivery / applied AI</span></div>
       <div class="mast-c"><span class="lbl lbl-ink">05 posts · 07 objects · 02 papers</span></div>

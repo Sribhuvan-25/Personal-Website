@@ -217,8 +217,9 @@
   .breath,
   .breath + p,
   .noindent{text-indent:0}
+  blockquote,
   blockquote p,
-  blockquote + p{text-indent:0}
+  .row > blockquote p{text-indent:0}
   aside.margin p{text-indent:0}
 
   .lede{text-indent:0}
@@ -481,9 +482,13 @@
   /* ---------- narrow: sidenotes collapse inline ---------- */
 
   @media (max-width:1080px){
-    :root{--measure:100%}
-    .sheet{max-width:42rem;padding:0 2rem}
+    :root{--measure:100%;--margin-col:auto;--gutter:0px}
+    .sheet{max-width:42rem;width:100%;padding:0 2rem}
     .row{display:block;max-width:none}
+    .row > p,
+    .row > h2,
+    .row > blockquote,
+    .row > ul.register{max-width:none}
     .anno,
     .anno:has(> .notes),
     .anno:has(> aside.margin + aside.margin){
