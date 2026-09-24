@@ -1,23 +1,22 @@
-/* Morning Light — design tokens (spec §1) */
+/* Sribhuvan Yellu. Dark canvas, one column, no decoration that is not doing work. */
 
 :root {
-  --paper: #fbf8f2;
-  --surface: #ffffff;
-  --ink: #2e2a24;
-  --muted: #7c7365;
-  --faint: #a79c8c;
-  --line: #e9e1d3;
-  --accent: #c2704e;
-  --accent-ink: #9c4f2e;
-  --accent-wash: #f5e7db;
+  color-scheme: dark;
 
-  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
-  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --bg: #0b0d11;
+  --bg-lift: #12151b;
+  --ink: #e8e9ec;
+  --ink-dim: #9ba1ac;
+  --ink-faint: #7d8492;
+  --rule: #1f242d;
+  --rule-lit: #2c333e;
+  --accent: #7fb5c9;
 
-  --measure: 720px;
+  --sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --measure: 44rem;
   --gutter: 1.5rem;
-  --section-gap: 6rem;
 }
 
 *,
@@ -27,211 +26,150 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
-  background: var(--paper);
+  background: var(--bg);
   color: var(--ink);
-  font-family: var(--font-body);
-  font-size: 1.0625rem;
-  line-height: 1.75;
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
 }
 
-/* Paper grain overlay — 3.5% (spec §1: texture) */
-.grain {
+/* Texture: a fine grid, masked so it fades out down the page. Nearly
+   invisible on its own. It only registers as the page having a surface. */
+.texture {
   position: fixed;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.035;
+  z-index: 0;
   pointer-events: none;
-  z-index: 10;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.016) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.016) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: radial-gradient(ellipse 120% 90% at 50% 0%, #000 35%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 120% 90% at 50% 0%, #000 35%, transparent 100%);
 }
 
 .shell {
+  position: relative;
+  z-index: 1;
   max-width: var(--measure);
   margin: 0 auto;
-  padding: 7rem var(--gutter) 3rem;
+  padding: 7.5rem var(--gutter) 5rem;
 }
 
-/* ---------- Typography primitives ---------- */
-
-h1,
-h2,
-h3 {
-  font-family: var(--font-display);
-  font-optical-sizing: auto;
-  margin: 0;
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--bg-lift);
+  color: var(--ink);
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--rule-lit);
+  border-radius: 4px;
+  z-index: 10;
 }
 
-h1 {
-  font-size: clamp(3rem, 7vw, 4.75rem);
-  font-weight: 400;
-  line-height: 1.05;
-  letter-spacing: -0.01em;
+.skip:focus {
+  left: 1rem;
+  top: 1rem;
 }
 
-h2 {
-  font-size: clamp(1.6rem, 3vw, 2.1rem);
-  font-weight: 450;
-  line-height: 1.2;
-  margin-bottom: 1.75rem;
-}
-
-h2 em,
-.contact__line em {
-  font-style: italic;
-  color: var(--accent);
-}
-
-p {
-  margin: 0 0 1.25rem;
-}
-
-p:last-child {
-  margin-bottom: 0;
-}
+/* ---------- links ---------- */
 
 a {
-  color: var(--accent-ink);
+  color: var(--ink);
   text-decoration: none;
-  background-image: linear-gradient(var(--accent-ink), var(--accent-ink));
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 0% 1px;
-  transition: background-size 0.25s ease, color 0.25s ease;
+  border-bottom: 1px solid var(--rule-lit);
+  transition: border-color 0.15s ease, color 0.15s ease;
 }
 
-a:hover,
-a:focus-visible {
-  background-size: 100% 1px;
+a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
 }
 
 a:focus-visible {
-  outline: 2px solid var(--accent-ink);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 2px;
 }
 
-.eyebrow {
-  font-family: var(--font-mono);
+/* ---------- name ---------- */
+
+.head {
+  margin-bottom: 6rem;
+}
+
+h1 {
+  font-size: clamp(2.1rem, 6vw, 3.1rem);
+  font-weight: 600;
+  letter-spacing: -0.022em;
+  line-height: 1.05;
+  margin: 0 0 1.1rem;
+}
+
+.head__role {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  color: var(--accent);
+  margin: 0 0 1.75rem;
+}
+
+.head__note {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--ink-dim);
+  margin: 0 0 2rem;
+  max-width: 36rem;
+}
+
+.head__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.5rem;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+}
+
+.head__links a {
+  color: var(--ink-dim);
+  border-bottom-color: transparent;
+}
+
+.head__links a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ---------- section headings ---------- */
+
+.block {
+  margin-bottom: 5.5rem;
+}
+
+.block:last-of-type {
+  margin-bottom: 4rem;
+}
+
+.block__title {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
   font-weight: 500;
-  font-size: 0.72rem;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--accent-ink);
-  margin: 0 0 0.9rem;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  margin: 0 0 2rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--rule);
 }
 
-.rule {
-  border: 0;
-  border-top: 1px solid var(--line);
-  margin: var(--section-gap) 0;
-}
-
-.dot {
-  color: var(--faint);
-  margin: 0 0.5rem;
-}
-
-/* ---------- Nav (spec §2.1) ---------- */
-
-.nav {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem 1.5rem;
-  margin-bottom: 5rem;
-}
-
-/* Logo mark (spec §1: Logo).
-   Rendered from the vector master; never recolored, rotated or shadowed.
-   Clearspace: >= 25% of the mark's width on all sides. */
-.nav__mark {
-  display: inline-flex;
-  padding: 8px;
-  margin: -8px;
-  background-image: none;
-  border-radius: 10px;
-}
-
-.nav__mark img {
-  width: 32px;
-  height: 32px;
-  display: block;
-}
-
-@media (max-width: 720px) {
-  .nav__mark img {
-    width: 28px;
-    height: 28px;
-  }
-}
-
-.footer__mark {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-bottom: 1rem;
-}
-
-.footer__mark img {
-  width: 24px;
-  height: 24px;
-  display: block;
-}
-
-.footer__mark span {
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  color: var(--ink);
-}
-
-.nav__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-}
-
-.nav__links a {
-  font-size: 0.9rem;
-  color: var(--muted);
-  background-image: linear-gradient(var(--accent-ink), var(--accent-ink));
-}
-
-.nav__links a:hover,
-.nav__links a:focus-visible {
-  color: var(--accent-ink);
-}
-
-/* ---------- Hero (spec §2.2) ---------- */
-
-.hero__sub {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 300;
-  font-size: 1.4rem;
-  line-height: 1.5;
-  color: var(--muted);
-  margin: 1.25rem 0 1.75rem;
-}
-
-.hero__bio {
-  max-width: 62ch;
-}
-
-/* ---------- Sections ---------- */
-
-.section {
-  scroll-margin-top: 3rem;
-}
-
-/* ---------- Experience: title, company, years only ---------- */
+/* ---------- experience ---------- */
 
 .roles {
   list-style: none;
@@ -241,401 +179,313 @@ a:focus-visible {
 
 .role {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: 0.15rem 1rem;
-  padding: 1.05rem 0;
-  border-top: 1px solid var(--line);
-  align-items: center;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  gap: 0 2rem;
+  padding-bottom: 2.75rem;
 }
 
 .role:last-child {
-  border-bottom: 1px solid var(--line);
+  padding-bottom: 0;
 }
 
-/* Company logo: official vector marks, sized to a common optical box. */
-.role__logo {
-  grid-column: 1;
-  grid-row: 1 / span 2;
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  align-self: center;
-}
-
-.role__title {
-  grid-column: 2;
-  font-weight: 500;
-  color: var(--ink);
-}
-
-.role__co {
-  grid-column: 2;
-  font-size: 0.9375rem;
-  color: var(--muted);
-}
-
-.role__years {
-  grid-column: 3;
-  grid-row: 1 / span 2;
-  align-self: center;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--muted);
+.role__when {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  line-height: 1.9;
+  color: var(--ink-faint);
+  margin: 0;
+  padding-top: 0.2rem;
   white-space: nowrap;
 }
 
-/* ---------- Tiles: projects & research ---------- */
-
-.tiles {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+.role__title {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0;
 }
 
-.tile {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-  padding: 1.25rem 1.35rem;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background-image: none;
-  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.tile:hover,
-.tile:focus-visible {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-  box-shadow: 0 24px 48px -24px rgba(120, 90, 60, 0.18);
-}
-
-.tile__name {
-  font-weight: 500;
-  color: var(--ink);
-  transition: color 0.25s ease;
-}
-
-.tile:hover .tile__name,
-.tile:focus-visible .tile__name {
-  color: var(--accent-ink);
-}
-
-.tile__desc {
+.role__org {
   font-size: 0.875rem;
-  line-height: 1.6;
-  color: var(--muted);
+  color: var(--accent);
+  margin: 0.15rem 0 0.7rem;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .tile,
-  .tile:hover,
-  .tile:focus-visible {
-    transform: none;
-    transition: none;
-  }
+.role__what {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--ink-dim);
+  margin: 0;
 }
 
-/* ---------- Education ---------- */
+/* ---------- projects ---------- */
 
-.education {
-  margin-top: 3.25rem;
+.work {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--rule);
 }
 
-.education h3 {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 450;
-  margin-bottom: 1.1rem;
+.item {
+  border-bottom: 1px solid var(--rule);
 }
 
-.education__line {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.1rem 1.5rem;
+.item__link {
+  display: block;
+  padding: 1.5rem 0;
+  border-bottom: 0;
+}
+
+.item__link:hover,
+.item__link:focus-visible {
+  color: inherit;
+}
+
+.item__name {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.45rem;
+  transition: color 0.15s ease;
+}
+
+.item__link:hover .item__name,
+.item__link:focus-visible .item__name {
+  color: var(--accent);
+}
+
+.item__what {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--ink-dim);
   margin: 0 0 0.6rem;
+  max-width: 38rem;
 }
 
-.education__line:last-child {
-  margin-bottom: 0;
+.item__meta {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--ink-faint);
+  margin: 0;
 }
 
-.education__school {
+.aside {
   font-size: 0.875rem;
-  color: var(--muted);
+  line-height: 1.75;
+  color: var(--ink-faint);
+  margin: 2rem 0 0;
+  max-width: 38rem;
 }
 
-/* ---------- Contact (centered) ---------- */
-
-.contact {
-  text-align: center;
+.aside a {
+  color: var(--ink-dim);
 }
 
-.contact .eyebrow {
-  margin-bottom: 1.1rem;
+/* ---------- writing ---------- */
+
+.soon {
+  font-size: 0.9375rem;
+  color: var(--ink-faint);
+  margin: 0;
 }
 
-.contact__line {
-  margin-bottom: 2rem;
+/* ---------- footer ---------- */
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
 }
 
-.contact__email a {
-  font-family: var(--font-display);
-  font-size: clamp(1.3rem, 3.4vw, 1.9rem);
-  font-weight: 400;
-  line-height: 1.3;
-  color: var(--accent-ink);
-  display: inline-block;
-  padding: 0.35rem 0;
-  word-break: break-word;
+.foot p {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  margin: 0;
 }
 
-.contact__links {
-  margin-top: 1.5rem;
-  font-size: 0.875rem;
-}
+/* ---------- narrow ---------- */
 
-.contact__links a {
-  color: var(--muted);
-  background-image: linear-gradient(var(--accent-ink), var(--accent-ink));
-}
-
-.contact__links a:hover,
-.contact__links a:focus-visible {
-  color: var(--accent-ink);
-}
-
-/* ---------- Footer (spec §2.8) ---------- */
-
-.footer p {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--muted);
-  margin: 0 0 0.4rem;
-}
-
-/* ---------- Motion (spec §1: motion) ---------- */
-
-/* Entries are hidden only after JS confirms it can reveal them again, so the
-   page stays fully readable with JS off, still loading, or in a background tab. */
-.js-reveal .reveal > * {
-  opacity: 0;
-  transform: translateY(14px);
-}
-
-.js-reveal .reveal.is-visible > * {
-  opacity: 1;
-  transform: none;
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  transition-delay: var(--stagger, 0ms);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  .js-reveal .reveal > *,
-  .js-reveal .reveal.is-visible > * {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-
-  a {
-    transition: none;
-  }
-}
-
-/* ---------- Breakpoints (spec §1: spacing & layout) ---------- */
-
-@media (max-width: 720px) {
-  :root {
-    --section-gap: 4rem;
-  }
-
+@media (max-width: 640px) {
   .shell {
     padding-top: 4.5rem;
   }
 
-  .nav {
-    margin-bottom: 3.5rem;
+  .head {
+    margin-bottom: 4rem;
   }
-}
 
-@media (max-width: 620px) {
-  .tiles {
-    grid-template-columns: minmax(0, 1fr);
+  .block {
+    margin-bottom: 4rem;
   }
 
   .role {
-    grid-template-columns: auto minmax(0, 1fr);
-  }
-
-  .role__years {
-    grid-column: 2;
-    grid-row: auto;
-    margin-top: 0.25rem;
-  }
-
-  .education__line {
+    grid-template-columns: minmax(0, 1fr);
     gap: 0;
   }
-}
 
-@media (max-width: 480px) {
-  :root {
-    --gutter: 1.25rem;
-  }
-
-  .nav__links {
-    gap: 1.1rem;
-  }
-
-  .hero__sub {
-    font-size: 1.2rem;
+  .role__when {
+    padding-top: 0;
+    margin-bottom: 0.4rem;
   }
 }
 
-/* ---------- Writing ---------- */
-
-.writing__title,
-.post__title {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 4.5vw, 2.8rem);
-  font-weight: 400;
-  line-height: 1.15;
-  margin: 0 0 1.5rem;
+@media (prefers-reduced-motion: reduce) {
+  a,
+  .item__name {
+    transition: none;
+  }
 }
 
-.post .eyebrow a {
-  color: var(--accent-ink);
+/* ---------- writing pages ---------- */
+
+.post__back {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  margin: 0 0 2.5rem;
+}
+
+.post__back a {
+  color: var(--ink-faint);
+  border-bottom-color: transparent;
+}
+
+.post__back a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.post__title,
+.writing__title {
+  font-size: clamp(1.7rem, 4.5vw, 2.3rem);
+  font-weight: 600;
+  letter-spacing: -0.018em;
+  line-height: 1.2;
+  margin: 0 0 0.8rem;
+}
+
+.writing__title {
+  margin-bottom: 2.5rem;
 }
 
 .post__date {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--muted);
-  margin: -0.75rem 0 2.5rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  margin: 0 0 3rem;
 }
 
 .post-list {
   list-style: none;
   margin: 0;
   padding: 0;
+  border-top: 1px solid var(--rule);
 }
 
 .post-item {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 0.25rem 1.5rem;
-  align-items: baseline;
-  padding: 1.35rem 0;
-  border-top: 1px solid var(--line);
-}
-
-.post-item:last-child {
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--rule);
+  padding: 1.5rem 0;
 }
 
 .post-item__link {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-  background-image: none;
+  display: block;
+  border-bottom: 0;
 }
 
 .post-item__title {
-  font-weight: 500;
-  color: var(--ink);
-  transition: color 0.25s ease;
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  transition: color 0.15s ease;
 }
 
 .post-item__link:hover .post-item__title,
 .post-item__link:focus-visible .post-item__title {
-  color: var(--accent-ink);
+  color: var(--accent);
 }
 
 .post-item__summary {
-  font-size: 0.875rem;
-  line-height: 1.6;
-  color: var(--muted);
+  display: block;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--ink-dim);
+  max-width: 38rem;
 }
 
 .post-item__date {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--muted);
-  white-space: nowrap;
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--ink-faint);
+  margin-top: 0.6rem;
 }
 
-/* Post body */
+/* post body */
+
+.prose {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ink-dim);
+  max-width: 38rem;
+}
 
 .prose > :first-child {
   margin-top: 0;
 }
 
 .prose h2,
-.prose h3,
-.prose h4 {
-  font-family: var(--font-display);
-  font-weight: 450;
-  line-height: 1.25;
+.prose h3 {
+  color: var(--ink);
+  font-weight: 600;
+  line-height: 1.3;
   margin: 2.75rem 0 1rem;
 }
 
-.prose h2 { font-size: 1.5rem; }
-.prose h3 { font-size: 1.2rem; }
-.prose h4 { font-size: 1.05rem; }
+.prose h2 { font-size: 1.25rem; }
+.prose h3 { font-size: 1.0625rem; }
 
-.prose p {
-  margin: 0 0 1.25rem;
-}
+.prose p { margin: 0 0 1.35rem; }
 
 .prose ul,
 .prose ol {
-  margin: 0 0 1.25rem;
-  padding-left: 1.3rem;
+  margin: 0 0 1.35rem;
+  padding-left: 1.25rem;
 }
 
-.prose li {
-  margin-bottom: 0.5rem;
-}
+.prose li { margin-bottom: 0.5rem; }
 
-.prose a {
-  color: var(--accent-ink);
-}
-
-.prose img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
+.prose strong { color: var(--ink); font-weight: 600; }
 
 .prose blockquote {
   margin: 1.75rem 0;
-  padding-left: 1.25rem;
-  border-left: 2px solid var(--accent);
-  color: var(--muted);
+  padding-left: 1.15rem;
+  border-left: 2px solid var(--rule-lit);
+  color: var(--ink-faint);
 }
 
 .prose code {
-  font-family: var(--font-mono);
+  font-family: var(--mono);
   font-size: 0.86em;
-  background: var(--accent-wash);
-  padding: 0.12em 0.3em;
-  border-radius: 4px;
-  /* Pull the tint in slightly so it does not look detached from
-     the punctuation that follows a code span. */
-  margin: 0 -0.02em;
+  background: var(--bg-lift);
+  border: 1px solid var(--rule);
+  padding: 0.1em 0.32em;
+  border-radius: 3px;
+  color: var(--ink);
 }
 
 .prose pre {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 12px;
+  background: var(--bg-lift);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
   padding: 1.1rem 1.25rem;
   overflow-x: auto;
   margin: 0 0 1.5rem;
@@ -643,23 +493,29 @@ a:focus-visible {
 
 .prose pre code {
   background: none;
+  border: 0;
   padding: 0;
-  font-size: 0.84rem;
+  font-size: 0.8125rem;
   line-height: 1.7;
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
 }
 
 .prose hr {
   border: 0;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--rule);
   margin: 2.5rem 0;
 }
 
-@media (max-width: 620px) {
-  .post-item {
-    grid-template-columns: minmax(0, 1fr);
-  }
+.foot a {
+  color: var(--ink-faint);
+  border-bottom-color: transparent;
+}
 
-  .post-item__date {
-    grid-column: 1;
-  }
+.foot a:hover {
+  color: var(--accent);
 }

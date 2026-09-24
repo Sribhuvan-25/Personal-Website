@@ -4,20 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Sribhuvan Yellu, Software Engineer</title>
+    <title>Sribhuvan Yellu</title>
     <meta
       name="description"
-      content="Software engineer who builds systems that hold up in production: secure exam software, applied AI, and tools people actually use."
+      content="Software engineer at Pearson working on secure exam delivery, native to web bridges, and applied machine learning."
     />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Sribhuvan Yellu, Software Engineer" />
+    <meta property="og:title" content="Sribhuvan Yellu" />
     <meta
       property="og:description"
-      content="I build systems that hold up in production."
+      content="Software engineer working on secure exam delivery and applied machine learning."
     />
     <meta property="og:url" content="https://sribhuvanreddyyellu.com/" />
     <meta name="twitter:card" content="summary" />
+    <meta name="theme-color" content="#0B0D11" />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
@@ -28,202 +29,201 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;450;500;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/src/styles.css" />
   </head>
 
   <body>
-    <!-- Paper grain overlay -->
-    <svg class="grain" aria-hidden="true" focusable="false">
-      <filter id="grain-filter">
-        <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch" />
-        <feColorMatrix type="saturate" values="0" />
-      </filter>
-      <rect width="100%" height="100%" filter="url(#grain-filter)" />
-    </svg>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <div class="texture" aria-hidden="true"></div>
 
     <div class="shell">
-      <header class="nav">
-        <a class="nav__mark" href="#top" aria-label="Home">
-          <img src="/favicon.svg" alt="" width="32" height="32" />
-        </a>
-        <nav class="nav__links" aria-label="Sections">
-          <a href="#now">Now</a>
-          <a href="#experience">Experience</a>
-          <a href="#projects">Side quests</a>
-          <a href="#research">Research</a>
-          <a href="/writing/">Writing</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </header>
-
-      <main id="top">
-        <!-- Hero -->
-        <section class="hero reveal">
+      <main id="main">
+        <!-- Name -->
+        <header class="head">
           <h1>Sribhuvan Yellu</h1>
-          <p class="hero__sub">I build systems that hold up in production.</p>
-          <p class="hero__bio">
-            I want to know why something works, not just that it does. The problems I like have
-            their hard part underneath. A race between native code and the web layer. A model
-            that's confident and wrong. I'd rather ship something small that holds than something
-            broad that almost works.
+          <p class="head__role">Software Engineer II at Pearson. Atlanta, Georgia.</p>
+          <p class="head__note">
+            I work at the seam where native code meets the web layer. Most of what I build runs
+            where failure is loud, so I treat the boundary as the product rather than as plumbing.
           </p>
-        </section>
-
-        <hr class="rule" />
-
-        <!-- 01 Now -->
-        <section class="section reveal" id="now">
-          <p class="eyebrow">01</p>
-          <h2>Now</h2>
-          <p>
-            Outside work I'm building
-            <a href="https://expression-explorer.vercel.app" rel="noopener">Expression Explorer</a>,
-            a gene expression analysis platform where new disease areas plug in through a shared
-            contract instead of a fork. Every analytical decision it makes is written down rather
-            than buried in the code.
+          <p class="head__links">
+            <a href="mailto:sribhuvan.y@gmail.com">sribhuvan.y@gmail.com</a>
+            <a href="https://github.com/Sribhuvan-25" rel="me noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/sribhuvanyellu/" rel="me noopener">LinkedIn</a>
           </p>
-        </section>
+        </header>
 
-        <hr class="rule" />
-
-        <!-- 02 Experience -->
-        <section class="section reveal" id="experience">
-          <p class="eyebrow">02</p>
-          <h2>Experience</h2>
+        <!-- Experience -->
+        <section class="block" aria-labelledby="experience">
+          <h2 class="block__title" id="experience">Experience</h2>
 
           <ol class="roles">
             <li class="role">
-              <img class="role__logo" src="/logos/pearson.svg" alt="Pearson logo" width="28" height="28" loading="lazy" />
-              <span class="role__title">Software Engineer II</span>
-              <span class="role__co">Pearson</span>
-              <span class="role__years"><time datetime="2026-08">2026</time>&ndash;Present</span>
+              <p class="role__when"><time datetime="2026-08">2026</time> &ndash; Present</p>
+              <div class="role__body">
+                <h3 class="role__title">Software Engineer II</h3>
+                <p class="role__org">Pearson</p>
+                <p class="role__what">
+                  Moving the OnVUE proctoring client onto a shared-UI codebase so Windows and macOS
+                  ship from one source tree instead of two that drift apart. I write the camera and
+                  microphone bridges between native platform code and the web layer, which is where
+                  BrowserLock either keeps its grip on the exam session or quietly loses it.
+                </p>
+              </div>
             </li>
+
             <li class="role">
-              <img class="role__logo" src="/logos/cognizant.svg" alt="Cognizant logo" width="28" height="28" loading="lazy" />
-              <span class="role__title">Software Engineer</span>
-              <span class="role__co">Cognizant / Pearson</span>
-              <span class="role__years"><time datetime="2025-12">2025</time>&ndash;<time datetime="2026-08">2026</time></span>
+              <p class="role__when"><time datetime="2025-12">2025</time> &ndash; <time datetime="2026-08">2026</time></p>
+              <div class="role__body">
+                <h3 class="role__title">Software Engineer, contract</h3>
+                <p class="role__org">Cognizant for Pearson</p>
+                <p class="role__what">
+                  Built the Android Chromebook exam client in Kotlin. Lock Task Mode pins the device
+                  for the length of the test, so the app owns failure modes the operating system
+                  usually handles. Play Integrity attestation runs before delivery, because anything
+                  a client asserts about itself is a claim and not a fact.
+                </p>
+              </div>
             </li>
+
             <li class="role">
-              <img class="role__logo" src="/logos/pearson.svg" alt="Pearson logo" width="28" height="28" loading="lazy" />
-              <span class="role__title">Applied AI Engineer Intern</span>
-              <span class="role__co">Pearson VUE</span>
-              <span class="role__years"><time datetime="2024-11">2024</time>&ndash;<time datetime="2025-08">2025</time></span>
+              <p class="role__when"><time datetime="2024-11">2024</time> &ndash; <time datetime="2025-08">2025</time></p>
+              <div class="role__body">
+                <h3 class="role__title">Applied AI Engineer, intern</h3>
+                <p class="role__org">Pearson VUE</p>
+                <p class="role__what">
+                  Put Gemini 2.5 Flash on live exam video and reached 92% detection on flagged
+                  behavior at 30 FPS. Real time was the requirement, so the frame budget picked the
+                  model rather than the other way around. Also wrote an MCP server and a LangGraph
+                  assistant so a model could read and write real scheduling tools.
+                </p>
+              </div>
             </li>
+
             <li class="role">
-              <img class="role__logo" src="/logos/pearson.svg" alt="Pearson logo" width="28" height="28" loading="lazy" />
-              <span class="role__title">Software Engineer Intern</span>
-              <span class="role__co">Pearson VUE</span>
-              <span class="role__years"><time datetime="2024-05">2024</time></span>
+              <p class="role__when"><time datetime="2024-05">2024</time></p>
+              <div class="role__body">
+                <h3 class="role__title">Software Engineer, intern</h3>
+                <p class="role__org">Pearson VUE</p>
+                <p class="role__what">
+                  Angular front end and Spring Boot services on the exam delivery platform.
+                </p>
+              </div>
             </li>
+
             <li class="role">
-              <img class="role__logo" src="/logos/ncr.svg" alt="NCR logo" width="28" height="28" loading="lazy" />
-              <span class="role__title">Software Engineer Intern</span>
-              <span class="role__co">NCR Corporation</span>
-              <span class="role__years"><time datetime="2023-05">2023</time></span>
+              <p class="role__when"><time datetime="2023-05">Summer 2023</time></p>
+              <div class="role__body">
+                <h3 class="role__title">Software Engineer, intern</h3>
+                <p class="role__org">NCR Corporation</p>
+                <p class="role__what">
+                  Next.js front end against GraphQL and REST services, covered with Jest. Honorable
+                  mention at the NCR Global Hackathon.
+                </p>
+              </div>
             </li>
           </ol>
         </section>
 
-        <hr class="rule" />
+        <!-- Projects -->
+        <section class="block" aria-labelledby="projects">
+          <h2 class="block__title" id="projects">Recent projects</h2>
 
-        <!-- 03 Projects -->
-        <section class="section reveal" id="projects">
-          <p class="eyebrow">03</p>
-          <h2>Side <em>quests</em></h2>
+          <ul class="work">
+            <li class="item">
+              <a class="item__link" href="https://expression-explorer.vercel.app" rel="noopener">
+                <h3 class="item__name">Expression Explorer</h3>
+                <p class="item__what">
+                  Gene expression analysis end to end: group comparison, signature scoring, survival.
+                  New disease areas plug in through a shared contract instead of a fork, and every
+                  analytical decision is written down rather than buried in the code.
+                </p>
+                <p class="item__meta">Live site</p>
+              </a>
+            </li>
 
-          <div class="tiles">
-            <a class="tile" href="https://expression-explorer.vercel.app" rel="noopener">
-              <span class="tile__name">Expression Explorer</span>
-              <span class="tile__desc">Gene expression analysis: group comparison, signature scoring, survival.</span>
-            </a>
+            <li class="item">
+              <a class="item__link" href="https://github.com/Sribhuvan-25/RoadEye" rel="noopener">
+                <h3 class="item__name">RoadEye</h3>
+                <p class="item__what">
+                  On-device road damage detection. It dedupes the same defect across frames, geotags
+                  it, and estimates real-world size. The hard part was never detection, it was not
+                  counting one pothole nine times.
+                </p>
+                <p class="item__meta">Swift</p>
+              </a>
+            </li>
 
-            <a class="tile" href="https://github.com/Sribhuvan-25/AutoQuanta" rel="noopener">
-              <span class="tile__name">AutoQuanta</span>
-              <span class="tile__desc">A local ML workbench that trains and compares models on your own machine.</span>
-            </a>
+            <li class="item">
+              <a class="item__link" href="https://github.com/Sribhuvan-25/AutoQuanta" rel="noopener">
+                <h3 class="item__name">AutoQuanta</h3>
+                <p class="item__what">
+                  A machine learning workbench that runs on your own machine. It trains and compares
+                  models locally, so the data never leaves the laptop it was collected on.
+                </p>
+                <p class="item__meta">TypeScript</p>
+              </a>
+            </li>
 
-            <a class="tile" href="https://github.com/Sribhuvan-25/code-agent" rel="noopener">
-              <span class="tile__name">Code Agent</span>
-              <span class="tile__desc">A LangGraph coding agent that runs its own edits in a Docker sandbox.</span>
-            </a>
+            <li class="item">
+              <a class="item__link" href="https://github.com/Sribhuvan-25/code-agent" rel="noopener">
+                <h3 class="item__name">Code Agent</h3>
+                <p class="item__what">
+                  A LangGraph coding agent that runs its own edits inside a Docker sandbox and traces
+                  every step in LangSmith. An agent without a trace is not debuggable, it is folklore.
+                </p>
+                <p class="item__meta">Python</p>
+              </a>
+            </li>
 
-            <a class="tile" href="https://github.com/Sribhuvan-25/RoadEye" rel="noopener">
-              <span class="tile__name">RoadEye</span>
-              <span class="tile__desc">On-device road damage detection that geotags and measures each defect.</span>
-            </a>
+            <li class="item">
+              <a class="item__link" href="https://github.com/Sribhuvan-25/GNN-Backbone" rel="noopener">
+                <h3 class="item__name">Domain-Expert-Guided GNNs</h3>
+                <p class="item__what">
+                  Graph neural networks predicting methane production in anaerobic digestion, where
+                  domain knowledge shapes the graph instead of sitting beside it. This was my
+                  master's thesis work.
+                </p>
+                <p class="item__meta">PyTorch Geometric</p>
+              </a>
+            </li>
 
+            <li class="item">
+              <a class="item__link" href="https://github.com/Sribhuvan-25/CipherCloud" rel="noopener">
+                <h3 class="item__name">CipherCloud</h3>
+                <p class="item__what">
+                  Zero-knowledge encrypted cloud storage. The server stores bytes it cannot read,
+                  which makes recovery a design problem rather than a support ticket.
+                </p>
+                <p class="item__meta">Python</p>
+              </a>
+            </li>
+          </ul>
 
-            <a class="tile" href="https://github.com/Sribhuvan-25/CipherCloud" rel="noopener">
-              <span class="tile__name">CipherCloud</span>
-              <span class="tile__desc">Zero-knowledge encrypted cloud storage.</span>
-            </a>
-          </div>
-        </section>
-
-        <hr class="rule" />
-
-        <!-- 04 Research -->
-        <section class="section reveal" id="research">
-          <p class="eyebrow">04</p>
-          <h2>Research</h2>
-
-          <div class="tiles">
-            <a class="tile" href="https://doi.org/10.1109/embc58623.2025.11254199" rel="noopener">
-              <span class="tile__name">Dynamic Contextual Attention Network</span>
-              <span class="tile__desc">Adaptive spatial representations for endoscopic polyp diagnosis. IEEE EMBC 2025.</span>
-            </a>
-
-            <a class="tile" href="https://github.com/Sribhuvan-25/GNN-Backbone" rel="noopener">
-              <span class="tile__name">Domain-Expert-Guided GNNs</span>
-              <span class="tile__desc">Predicting methane production in anaerobic digestion. MS thesis work.</span>
-            </a>
-          </div>
-
-          <div class="education">
-            <h3>Education</h3>
-            <p class="education__line">
-              <span>MS, Computer Science</span>
-              <span class="education__school">Georgia State University</span>
-            </p>
-            <p class="education__line">
-              <span>BS, Computer Science, Summa Cum Laude</span>
-              <span class="education__school">Georgia State University</span>
-            </p>
-          </div>
-        </section>
-
-        <hr class="rule" />
-
-        <!-- 05 Contact -->
-        <section class="section reveal contact" id="contact">
-          <p class="eyebrow">05</p>
-          <h2 class="contact__line">Contact</h2>
-          <p class="contact__email">
-            <a href="mailto:sribhuvan.y@gmail.com">sribhuvan.y@gmail.com</a>
+          <p class="aside">
+            One paper, <a href="https://doi.org/10.1109/embc58623.2025.11254199" rel="noopener">Dynamic
+            Contextual Attention Network</a> for endoscopic polyp diagnosis, IEEE EMBC 2025, written
+            at the TReNDS Center. MS and BS in computer science from Georgia State.
           </p>
-          <p class="contact__links">
-            <a href="https://github.com/Sribhuvan-25" rel="me noopener">GitHub</a>
-            <span class="dot" aria-hidden="true">·</span>
-            <a href="https://www.linkedin.com/in/sribhuvanyellu/" rel="me noopener">LinkedIn</a>
+        </section>
+
+        <!-- Writing -->
+        <section class="block" aria-labelledby="writing">
+          <h2 class="block__title" id="writing">Writing</h2>
+          <p class="soon">
+            Notes on the work are going <a href="/writing/">here</a>. Early days.
           </p>
         </section>
       </main>
 
-      <footer class="footer">
-        <hr class="rule" />
-        <p class="footer__mark">
-          <img src="/favicon.svg" alt="" width="24" height="24" />
-          <span>Sribhuvan Yellu</span>
-        </p>
-        <p>© 2026 Sribhuvan Yellu · Atlanta, GA</p>
-        <p>Last updated Sep 2026</p>
+      <footer class="foot">
+        <p>Sribhuvan Yellu</p>
+        <p>Atlanta, Georgia</p>
       </footer>
     </div>
-
-    <script src="/src/reveal.js" type="module"></script>
   </body>
 </html>
