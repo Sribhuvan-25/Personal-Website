@@ -130,7 +130,7 @@ h1 {
 /* ---------- section headings ---------- */
 
 .block {
-  margin-bottom: 5.5rem;
+  margin-bottom: 6.5rem;
 }
 
 .block:last-of-type {
@@ -138,15 +138,11 @@ h1 {
 }
 
 .block__title {
-  font-family: var(--mono);
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.01em;
   color: var(--ink-faint);
-  margin: 0 0 0.25rem;
-  padding-bottom: 0.9rem;
-  border-bottom: 1px solid var(--rule);
+  margin: 0 0 1.9rem;
 }
 
 /* ---------- experience: logo, title, company ---------- */
@@ -162,8 +158,11 @@ h1 {
   grid-template-columns: 26px minmax(0, 1fr) auto;
   align-items: center;
   gap: 0.1rem 1.1rem;
-  padding: 1.15rem 0;
-  border-bottom: 1px solid var(--rule);
+  padding: 0.55rem 0 1.5rem;
+}
+
+.role:last-child {
+  padding-bottom: 0;
 }
 
 .role__logo {
@@ -208,14 +207,14 @@ h1 {
   padding: 0;
 }
 
-.item {
-  border-bottom: 1px solid var(--rule);
-}
-
 .item__link {
   display: block;
-  padding: 1.15rem 0;
+  padding: 0.45rem 0 1.5rem;
   border-bottom: 0;
+}
+
+.item:last-child .item__link {
+  padding-bottom: 0;
 }
 
 .item__name {
@@ -254,8 +253,7 @@ h1 {
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.6rem 1.75rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--rule);
+  margin-top: 4rem;
   font-family: var(--mono);
   font-size: 0.8125rem;
 }
@@ -382,12 +380,14 @@ h1 {
   list-style: none;
   margin: 0;
   padding: 0;
-  border-top: 1px solid var(--rule);
 }
 
 .post-item {
-  border-bottom: 1px solid var(--rule);
-  padding: 1.5rem 0;
+  padding: 0 0 1.6rem;
+}
+
+.post-item:last-child {
+  padding-bottom: 0;
 }
 
 .post-item__link {
