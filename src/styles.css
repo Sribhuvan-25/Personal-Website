@@ -1,16 +1,16 @@
 /* Sribhuvan Yellu. Dark canvas, one column, no decoration that is not doing work. */
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
-  --bg: #1a1d23;
-  --bg-lift: #22262d;
-  --ink: #eef0f4;
-  --ink-dim: #a8aeba;
-  --ink-faint: #8d94a1;
-  --rule: #2d323b;
-  --rule-lit: #3c424d;
-  --accent: #8fb9cc;
+  --bg: #d3d3c8;
+  --bg-lift: #e1e1d6;
+  --ink: #25261f;
+  --ink-dim: #505147;
+  --ink-faint: #58594c;
+  --rule: #bfc0b3;
+  --rule-lit: #a8a99a;
+  --accent: #545c2e;
 
   --sans: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
@@ -48,7 +48,7 @@ body {
   pointer-events: none;
   background: radial-gradient(
     ellipse 70% 45% at 20% 0%,
-    rgba(255, 255, 255, 0.05),
+    rgba(0, 0, 0, 0.05),
     transparent 62%
   );
 }
