@@ -12,8 +12,8 @@
   --rule-lit: #2c333e;
   --accent: #7fb5c9;
 
-  --sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --sans: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
   --measure: 44rem;
   --gutter: 1.5rem;

@@ -2,6 +2,6 @@
   <rect width="64" height="64" rx="12" fill="#12151B"/>
   <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="11.25" fill="none" stroke="#2C333E" stroke-width="1.5"/>
   <text x="32" y="43" text-anchor="middle"
-        font-family="IBM Plex Mono, ui-monospace, Menlo, monospace"
+        font-family="Geist Mono, ui-monospace, Menlo, monospace"
         font-size="27" font-weight="500" fill="#7FB5C9">SY</text>
 </svg>

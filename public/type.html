@@ -32,7 +32,17 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;450;500;600&display=swap"
       rel="stylesheet"
     />
-    <style>/* Sribhuvan Yellu. Dark canvas, one column, no decoration that is not doing work. */
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;450;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>/* Sribhuvan Yellu. Dark canvas, one column, no decoration that is not doing work. */
 
 :root {
   color-scheme: dark;
@@ -77,7 +87,7 @@ body {
    invisible on its own. It only registers as the page having a surface. */
 
 
-.texture{position:fixed;inset:0;z-index:0;pointer-events:none}
+.texture{position:fixed;inset:0;z-index:0;pointer-events:none;display:none}
 .shell {
   position: relative;
   z-index: 1;
@@ -588,43 +598,30 @@ h1 {
   
 <style>
 #pick{position:fixed;right:1rem;bottom:1rem;z-index:99;background:#1b1e22;border:1px solid #383c43;
- border-radius:10px;padding:.7rem;max-width:min(94vw,26rem);font:500 11px/1.2 "IBM Plex Mono",monospace;
+ border-radius:10px;padding:.7rem;max-width:min(94vw,25rem);font:500 11px/1.2 ui-monospace,monospace;
  box-shadow:0 12px 40px rgba(0,0,0,.55)}
 #pick h4{margin:0 0 .45rem;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#868b93;font-weight:500}
-#pick .grp{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.7rem}
-#pick .grp:last-child{margin-bottom:0}
+#pick .grp{display:flex;flex-wrap:wrap;gap:.3rem}
 #pick button{background:#101216;color:#a3a7ad;border:1px solid #383c43;border-radius:5px;padding:.42rem .5rem;cursor:pointer;font:inherit}
 #pick button:hover{color:#fff;border-color:#8fb9cc}
 #pick button[aria-pressed=true]{background:#8fb9cc;color:#101216;border-color:#8fb9cc}
-#pick .sw{width:11px;height:11px;border-radius:3px;display:inline-block;margin-right:.35rem;vertical-align:-1px;border:1px solid rgba(255,255,255,.2)}
 </style>
-<div id="pick">
-  <h4>Ground</h4><div class="grp" id="pals"></div>
-  <h4>Treatment</h4><div class="grp" id="texs"></div>
-</div>
+<div id="pick"><h4>Typeface</h4><div class="grp" id="fs"></div></div>
 <script>
-const PAL={"Basalt": ":root{--bg:#131518;--bg-lift:#1b1e22;--ink:#e9ebed;--ink-dim:#a0a5ab;--ink-faint:#848a91;--rule:#25282d;--rule-lit:#33373e;--accent:#7fb5c9}body{background:var(--bg)}", "Charcoal": ":root{--bg:#16171a;--bg-lift:#1e2024;--ink:#ecedef;--ink-dim:#a3a7ad;--ink-faint:#868b93;--rule:#292c31;--rule-lit:#383c43;--accent:#8fb9cc}body{background:var(--bg)}", "Ink": ":root{--bg:#12161d;--bg-lift:#1a1f28;--ink:#e9ecf2;--ink-dim:#a1a8b6;--ink-faint:#858d9c;--rule:#232936;--rule-lit:#313848;--accent:#89aee0}body{background:var(--bg)}", "Espresso": ":root{--bg:#191512;--bg-lift:#221d19;--ink:#f0ebe5;--ink-dim:#aca399;--ink-faint:#8f867c;--rule:#2a2420;--rule-lit:#3a322c;--accent:#d79a63}body{background:var(--bg)}"}, PALBG={"Basalt": "#131518", "Charcoal": "#16171a", "Ink": "#12161d", "Espresso": "#191512"}, TEX={"Flat": ".texture{display:none}", "Raking light": ".texture{background:radial-gradient(ellipse 70% 45% at 18% 0%,rgba(255,255,255,.045),transparent 62%)}", "Panel": ".texture{background:linear-gradient(to right,transparent calc(50% - 24rem),rgba(255,255,255,.018) calc(50% - 24rem),rgba(255,255,255,.018) calc(50% + 24rem),transparent calc(50% + 24rem)),\n   linear-gradient(to right,transparent calc(50% - 24rem - 1px),rgba(255,255,255,.07) calc(50% - 24rem - 1px),transparent calc(50% - 24rem)),\n   linear-gradient(to right,transparent calc(50% + 24rem),rgba(255,255,255,.07) calc(50% + 24rem),transparent calc(50% + 24rem + 1px))}", "Horizon": ".texture{background:linear-gradient(to bottom,rgba(255,255,255,.05),rgba(255,255,255,.012) 28%,transparent 60%)}", "Vignette": ".texture{background:radial-gradient(ellipse 75% 65% at 50% 38%,transparent 40%,rgba(0,0,0,.42) 100%)}", "Spine": ".texture{background:linear-gradient(to right,transparent calc(50% - 24rem - 1px),rgba(127,181,201,.5) calc(50% - 24rem - 1px),rgba(127,181,201,.5) calc(50% - 24rem),transparent calc(50% - 24rem));\n   -webkit-mask-image:linear-gradient(to bottom,transparent,#000 6%,#000 82%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 6%,#000 82%,transparent)}", "Floor light": ".texture{background:radial-gradient(ellipse 120% 40% at 50% 104%,rgba(127,181,201,.07),transparent 70%)}"};
-const sPal=document.createElement('style'), sTex=document.createElement('style');
-document.head.append(sPal,sTex);
-function build(host,defs,slot,swatch){
-  Object.keys(defs).forEach((k,i)=>{
-    const b=document.createElement('button');
-    if(swatch){const d=document.createElement('span');d.className='sw';d.style.background=PALBG[k];b.appendChild(d);}
-    b.appendChild(document.createTextNode(k));
-    b.setAttribute('aria-pressed', i===0?'true':'false'); b.dataset.key=k;
-    b.onclick=()=>{slot.textContent=defs[k];
-      [...host.children].forEach(c=>c.setAttribute('aria-pressed','false'));
-      b.setAttribute('aria-pressed','true');};
-    host.appendChild(b);
-  });
-}
-build(document.getElementById('pals'),PAL,sPal,true);
-build(document.getElementById('texs'),TEX,sTex,false);
-sPal.textContent=PAL[Object.keys(PAL)[0]];
-sTex.textContent=TEX[Object.keys(TEX)[0]];
+const F={"Plex (current)": ":root{--sans:\"IBM Plex Sans\", system-ui, sans-serif;--mono:\"IBM Plex Mono\", ui-monospace, monospace}", "Inter": ":root{--sans:\"Inter\", system-ui, sans-serif;--mono:\"IBM Plex Mono\", ui-monospace, monospace}", "S\u00f6hne-like (Manrope)": ":root{--sans:\"Manrope\", system-ui, sans-serif;--mono:\"IBM Plex Mono\", ui-monospace, monospace}", "Geist": ":root{--sans:\"Geist\", system-ui, sans-serif;--mono:\"Geist Mono\", ui-monospace, monospace}", "Instrument": ":root{--sans:\"Instrument Sans\", system-ui, sans-serif;--mono:\"IBM Plex Mono\", ui-monospace, monospace}", "Satoshi-like (Outfit)": ":root{--sans:\"Outfit\", system-ui, sans-serif;--mono:\"IBM Plex Mono\", ui-monospace, monospace}", "Serif (Newsreader)": ":root{--sans:\"Newsreader\", Georgia, serif;--mono:\"IBM Plex Mono\", ui-monospace, monospace}", "Serif (Source Serif)": ":root{--sans:\"Source Serif 4\", Georgia, serif;--mono:\"IBM Plex Mono\", ui-monospace, monospace}", "System": ":root{--sans:-apple-system, BlinkMacSystemFont, \"Segoe UI\", system-ui, sans-serif;--mono:\"IBM Plex Mono\", ui-monospace, monospace}"};
+const s=document.createElement('style'); document.head.appendChild(s);
+const host=document.getElementById('fs');
+Object.keys(F).forEach((k,i)=>{
+  const b=document.createElement('button');
+  b.textContent=k; b.dataset.key=k;
+  b.setAttribute('aria-pressed', i===0?'true':'false');
+  b.onclick=()=>{s.textContent=F[k];
+    [...host.children].forEach(c=>c.setAttribute('aria-pressed','false'));
+    b.setAttribute('aria-pressed','true');};
+  host.appendChild(b);
+});
 const q=new URLSearchParams(location.search);
-if(q.get('p')) document.querySelector(`#pals button[data-key="${q.get('p')}"]`)?.click();
-if(q.get('t')) document.querySelector(`#texs button[data-key="${q.get('t')}"]`)?.click();
+if(q.get('f')) document.querySelector(`#fs button[data-key="${q.get('f')}"]`)?.click();
 if(q.get('hide')) document.getElementById('pick').style.display='none';
 </script>
 </body>
