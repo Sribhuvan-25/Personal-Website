@@ -3,14 +3,14 @@
 :root {
   color-scheme: light;
 
-  --bg: #d3d3c8;
-  --bg-lift: #e1e1d6;
-  --ink: #25261f;
-  --ink-dim: #505147;
-  --ink-faint: #58594c;
-  --rule: #bfc0b3;
-  --rule-lit: #a8a99a;
-  --accent: #545c2e;
+  --bg: #bbbbad;
+  --bg-lift: #c9c9bb;
+  --ink: #191a13;
+  --ink-dim: #404137;
+  --ink-faint: #48493e;
+  --rule: #a7a799;
+  --rule-lit: #939385;
+  --accent: #3f4a1d;
 
   --sans: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
