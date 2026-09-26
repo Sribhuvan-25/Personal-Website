@@ -244,11 +244,46 @@ h1 {
 .foot {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.6rem 1.75rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--rule);
   font-family: var(--mono);
   font-size: 0.8125rem;
+}
+
+/* Writing pages carry only a back link, left aligned. */
+.foot--plain {
+  justify-content: flex-start;
+}
+
+/* Back controls read as navigation rather than body links. */
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--ink-dim);
+  border-bottom-color: transparent;
+}
+
+.back::before {
+  content: "\2190";
+  font-size: 1em;
+  line-height: 1;
+}
+
+.back:hover,
+.back:focus-visible {
+  color: var(--accent);
+  border-bottom-color: transparent;
+}
+
+.empty {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--ink-faint);
+  margin: 0;
+  max-width: 34rem;
 }
 
 .foot a {
