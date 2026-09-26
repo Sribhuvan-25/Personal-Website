@@ -109,7 +109,15 @@ h1 {
   font-weight: 600;
   letter-spacing: -0.022em;
   line-height: 1.05;
+  margin: 0 0 1.1rem;
+}
+
+.head__line {
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--ink-dim);
   margin: 0;
+  max-width: 34rem;
 }
 
 .head__role {
