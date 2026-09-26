@@ -2,12 +2,137 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./src/assets/nameLogo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Personal-Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Sribhuvan Yellu</title>
+    <meta
+      name="description"
+      content="Software engineer at Pearson working on secure exam delivery, native to web bridges, and applied machine learning."
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sribhuvan Yellu" />
+    <meta
+      property="og:description"
+      content="Software engineer working on secure exam delivery and applied machine learning."
+    />
+    <meta property="og:url" content="https://sribhuvanreddyyellu.com/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="theme-color" content="#BBBBAD" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="canonical" href="https://sribhuvanreddyyellu.com/" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles.css" />
   </head>
+
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <div class="texture" aria-hidden="true"></div>
+
+    <div class="shell">
+      <main id="main">
+        <!-- Name -->
+        <header class="head">
+          <h1>Sribhuvan Yellu</h1>
+          <p class="head__line">When anyone can build anything, what&rsquo;s worth building?</p>
+        </header>
+
+        <!-- Experience -->
+        <section class="block" aria-labelledby="experience">
+          <h2 class="block__title" id="experience">Experience</h2>
+
+          <ol class="roles">
+            <li class="role">
+              <img class="role__logo" src="/logos/pearson.svg" alt="Pearson logo" width="26" height="26" loading="lazy" />
+              <span class="role__title">Software Engineer II</span>
+              <span class="role__org">Pearson</span>
+              <span class="role__when"><time datetime="2026-08">2026</time>&ndash;Present</span>
+            </li>
+            <li class="role">
+              <img class="role__logo" src="/logos/cognizant.svg" alt="Cognizant logo" width="26" height="26" loading="lazy" />
+              <span class="role__title">Software Engineer</span>
+              <span class="role__org">Cognizant <span class="role__sub">(contract for Pearson)</span></span>
+              <span class="role__when"><time datetime="2025-12">2025</time>&ndash;<time datetime="2026-08">2026</time></span>
+            </li>
+            <li class="role">
+              <img class="role__logo" src="/logos/pearson.svg" alt="Pearson VUE logo" width="26" height="26" loading="lazy" />
+              <span class="role__title">Applied AI Engineer Intern</span>
+              <span class="role__org">Pearson VUE</span>
+              <span class="role__when"><time datetime="2024-11">2024</time>&ndash;<time datetime="2025-08">2025</time></span>
+            </li>
+            <li class="role">
+              <img class="role__logo" src="/logos/pearson.svg" alt="Pearson VUE logo" width="26" height="26" loading="lazy" />
+              <span class="role__title">Software Engineer Intern</span>
+              <span class="role__org">Pearson VUE</span>
+              <span class="role__when"><time datetime="2024-05">2024</time></span>
+            </li>
+            <li class="role">
+              <img class="role__logo" src="/logos/ncr.svg" alt="NCR logo" width="26" height="26" loading="lazy" />
+              <span class="role__title">Software Engineer Intern</span>
+              <span class="role__org">NCR Corporation</span>
+              <span class="role__when"><time datetime="2023-05">2023</time></span>
+            </li>
+
+            <li class="role">
+              <img class="role__logo" src="/logos/ncr.svg" alt="NCR logo" width="26" height="26" loading="lazy" />
+              <span class="role__title">Software Engineer Intern</span>
+              <span class="role__org">NCR Corporation</span>
+              <span class="role__when"><time datetime="2022-05">2022</time></span>
+            </li>
+          </ol>
+        </section>
+
+        <!-- Projects -->
+        <section class="block" aria-labelledby="projects">
+          <h2 class="block__title" id="projects">Currently building</h2>
+
+          <ul class="work">
+            <li class="item">
+              <a class="item__link" href="https://expression-explorer.vercel.app" rel="noopener">
+                <span class="item__name">Expression Explorer</span>
+                <span class="item__what">A gene expression analysis platform where new disease areas plug in instead of forking.</span>
+              </a>
+            </li>
+
+            <li class="item">
+              <a class="item__link" href="https://github.com/Sribhuvan-25/RoadEye" rel="noopener">
+                <span class="item__name">RoadEye</span>
+                <span class="item__what">On-device road damage detection that geotags each defect and estimates its real size.</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Writing -->
+        <section class="block" aria-labelledby="writing">
+          <h2 class="block__title" id="writing">Writing</h2>
+          <ul class="work">
+            <li class="item">
+              <a class="item__link" href="/writing/">
+                <span class="item__name">Notes</span>
+                <span class="item__what">Things I worked out while building, written down so I do not work them out twice.</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+      </main>
+
+      <footer class="foot">
+        <a href="mailto:sribhuvan.y@gmail.com">sribhuvan.y@gmail.com</a>
+        <a href="https://github.com/Sribhuvan-25" rel="me noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/sribhuvanyellu/" rel="me noopener">LinkedIn</a>
+      </footer>
+    </div>
   </body>
 </html>

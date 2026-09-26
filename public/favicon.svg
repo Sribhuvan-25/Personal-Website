@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="SY">
+  <rect width="64" height="64" rx="12" fill="#BBBBAD"/>
+  <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="11.25" fill="none" stroke="#939385" stroke-width="1.5"/>
+  <text x="32" y="43" text-anchor="middle"
+        font-family="Geist, ui-sans-serif, system-ui, sans-serif"
+        font-size="27" font-weight="600" fill="#3F4A1D">SY</text>
+</svg>
